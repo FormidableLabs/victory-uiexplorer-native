@@ -1,0 +1,26 @@
+{
+  "name": "VictoryNativeUIExplorer",
+  "version": "0.0.1",
+  "description": "A sample app that showcases Victory Native components",
+  "author": "Angela Nicholas",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-native": "^0.34.1",
+    "react-native-svg": "^4.3.1",
+    "victory-native": "^0.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.0.0",
+    "eslint": "^3.7.1",
+    "eslint-plugin-filenames": "^1.1.0",
+    "eslint-config-formidable": "^2.0.1",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-react": "^6.3.0"
+  }
+}

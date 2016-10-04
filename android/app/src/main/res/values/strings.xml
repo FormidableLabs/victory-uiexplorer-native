@@ -1,4 +1,5 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">4c3fzidGlMP4pe8tYRcc16Lt-dw1NJ2oD-apW</string>
 
     <string name="app_name">VictoryNativeUIExplorer</string>
 </resources>

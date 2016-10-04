@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-native": "^0.34.1",
+    "react-native-code-push": "^1.14.6-beta",
     "react-native-svg": "^4.3.1",
     "victory-native": "^0.3.0"
   },

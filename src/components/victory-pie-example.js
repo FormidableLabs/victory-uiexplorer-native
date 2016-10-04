@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { VictoryPie } from "victory-native";
 
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
 import { defaultPropMap } from "../utils/props";
-import { colors, colorScales } from "../utils/colors";
+import { colorScales } from "../utils/colors";
+import { styles } from "../utils/styles";
 
 export default class VictoryPieExample extends Component {
   static displayName = "VictoryPieExample";
@@ -76,16 +77,3 @@ export default class VictoryPieExample extends Component {
     this.setState({ sliderValue: value });
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.backgroundColor,
-    flex: 1,
-    paddingTop: 64,
-  },
-  chartWrapper: {
-    backgroundColor: "white",
-    borderBottomColor: colors.borderColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});

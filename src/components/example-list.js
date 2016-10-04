@@ -7,6 +7,7 @@ import Title from "../components/title";
 
 import { colors } from "../utils/colors";
 import { components, examples } from "../utils/examples";
+import { styles } from "../utils/styles";
 
 const exampleTitles = [
   "PIE CHART",
@@ -67,10 +68,10 @@ export default class ExampleList extends Component {
           highlightRow(sectionID, rowID);
         }}
       >
-        <View style={styles.componentContainer}>
-          <View style={styles.titleContainer}>
+        <View style={exampleListStyles.componentContainer}>
+          <View style={exampleListStyles.titleContainer}>
             <Title text={exampleTitles[rowID]} />
-            <View style={styles.titleCaret} />
+            <View style={exampleListStyles.titleCaret} />
           </View>
           {rowData}
         </View>
@@ -79,12 +80,7 @@ export default class ExampleList extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.backgroundColor,
-    flex: 1,
-    paddingTop: 64,
-  },
+const exampleListStyles = StyleSheet.create({
   componentContainer: {
     alignItems: "center",
     backgroundColor: "white",

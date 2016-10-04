@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { VictoryScatter } from "victory-native";
 
 import ChartControls from "../components/chart-controls";
 import ToggleControl from "../components/toggle-control";
 import { defaultPropMap } from "../utils/props";
-import { colors } from "../utils/colors";
+import { styles } from "../utils/styles";
 
 export default class VictoryScatterExample extends Component {
   static displayName = "VictoryScatterExample";
@@ -49,16 +49,3 @@ export default class VictoryScatterExample extends Component {
     this.setState(newState);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.backgroundColor,
-    flex: 1,
-    paddingTop: 64,
-  },
-  chartWrapper: {
-    backgroundColor: "white",
-    borderBottomColor: colors.borderColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});

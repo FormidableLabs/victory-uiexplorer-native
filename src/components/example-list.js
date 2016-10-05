@@ -1,10 +1,7 @@
-/*eslint-disable max-params*/
 import React, { Component, PropTypes } from "react";
 import { ListView, StyleSheet, TouchableOpacity, View } from "react-native";
-
 import Example from "../components/example";
 import Title from "../components/title";
-
 import { colors } from "../utils/colors";
 import { components, examples } from "../utils/examples";
 import { styles } from "../utils/styles";
@@ -60,6 +57,7 @@ export default class ExampleList extends Component {
     );
   }
 
+  // eslint-disable-next-line max-params
   _renderRow(rowData, sectionID, rowID, highlightRow) {
     return (
       <TouchableOpacity

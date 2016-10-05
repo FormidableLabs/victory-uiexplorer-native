@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryArea } from "victory-native";
-
 import ChartControls from "../components/chart-controls";
 import DataToggle from "../components/toggle-control";
 import { defaultPropMap } from "../utils/props";
@@ -12,10 +11,7 @@ export default class VictoryAreaExample extends Component {
 
   constructor(props) {
     super(props);
-
-    this._handleToggleChange = this._handleToggleChange.bind(this);
-    this.handleDatasetChange = this._handleToggleChange.bind(null, "selectedDatasetIndex");
-
+    this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.state = {
       selectedDatasetIndex: 0,
     };
@@ -45,9 +41,9 @@ export default class VictoryAreaExample extends Component {
     );
   }
 
-  _handleToggleChange(propName, ev) {
-    const newState = {};
-    newState[propName] = ev.nativeEvent.selectedSegmentIndex;
-    this.setState(newState);
+  handleDatasetChange(ev) {
+    this.setState({
+      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 }

@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react";
 import { StyleSheet, View } from "react-native";
-
 import { defaultPropMap } from "../utils/props";
 import { colors } from "../utils/colors";
 

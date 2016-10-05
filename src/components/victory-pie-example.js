@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryPie } from "victory-native";
-
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
@@ -14,24 +13,18 @@ export default class VictoryPieExample extends Component {
 
   constructor(props) {
     super(props);
-    this._handleToggleChange = this._handleToggleChange.bind(this);
-    this.handleColorChange = this._handleToggleChange.bind(null, "selectedColorIndex");
-    this.handleDatasetChange = this._handleToggleChange.bind(null, "selectedDatasetIndex");
+    this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleInnerRadiusChange = this.handleInnerRadiusChange.bind(this);
     this.state = {
+      innerRadius: 0,
       selectedColorIndex: 0,
       selectedDatasetIndex: 0,
-      innerRadius: 0,
     };
   }
 
   render() {
-    const {
-      selectedColorIndex,
-      selectedDatasetIndex,
-      innerRadius,
-    } = this.state;
-
+    const { innerRadius, selectedColorIndex, selectedDatasetIndex } = this.state;
     const props = defaultPropMap.VictoryPie;
     const { data, ...other } = props;
 
@@ -67,13 +60,21 @@ export default class VictoryPieExample extends Component {
     );
   }
 
-  _handleToggleChange(propName, ev) {
-    const newState = {};
-    newState[propName] = ev.nativeEvent.selectedSegmentIndex;
-    this.setState(newState);
+  handleColorChange(ev) {
+    this.setState({
+      selectedColorIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
+  }
+
+  handleDatasetChange(ev) {
+    this.setState({
+      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleInnerRadiusChange(value) {
-    this.setState({ sliderValue: value });
+    this.setState({
+      sliderValue: value,
+    });
   }
 }

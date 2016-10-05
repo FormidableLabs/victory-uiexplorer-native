@@ -9,7 +9,7 @@ import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 const endAngles = ["-180", "-135", "-90"];
-const startAngles = ["90", "135", "180"];
+const startAngles = ["180", "135", "90"];
 
 export default class VictoryPieExample extends Component {
   static displayName = "VictoryPieExample";
@@ -30,7 +30,7 @@ export default class VictoryPieExample extends Component {
       selectedColorIndex: 0,
       selectedDatasetIndex: 0,
       selectedEndAngleIndex: 0,
-      selectedStartAngleIndex: 2,
+      selectedStartAngleIndex: 0,
     };
   }
 
@@ -76,6 +76,12 @@ export default class VictoryPieExample extends Component {
             onChange={this.handleInnerRadiusChange}
             title="innerRadius"
           />
+          <SliderControl
+            min={0}
+            max={10}
+            onChange={this.handlePadAngleChange}
+            title="padAngle"
+          />
           <ToggleControl
             onChange={this.handleStartAngleChange}
             selectedIndex={selectedStartAngleIndex}
@@ -87,12 +93,6 @@ export default class VictoryPieExample extends Component {
             selectedIndex={selectedEndAngleIndex}
             title="endAngle"
             values={endAngles}
-          />
-          <SliderControl
-            min={0}
-            max={10}
-            onChange={this.handlePadAngleChange}
-            title="padAngle"
           />
         </ChartControls>
       </View>

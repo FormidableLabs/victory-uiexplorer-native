@@ -25,6 +25,8 @@ export const defaultPropMap = {
     },
     colorScale,
     data: datasets.pie,
+    startAngle: 180,
+    endAngle: -180,
   },
   VictoryBar: {
     data: datasets.bar,

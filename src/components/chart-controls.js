@@ -1,11 +1,20 @@
 import React, { PropTypes } from "react";
-import { View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 const ChartControls = ({ children }) => (
-  <View style={{ padding: 12 }}>
+  <ScrollView style={styles.container}>
     {children}
-  </View>
+  </ScrollView>
 );
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    paddingRight: 12,
+    paddingBottom: 24,
+    paddingLeft: 12,
+  },
+});
 
 ChartControls.propTypes = {
   children: PropTypes.oneOfType([

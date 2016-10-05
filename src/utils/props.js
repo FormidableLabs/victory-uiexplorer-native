@@ -57,7 +57,7 @@ export const defaultPropMap = {
     padding,
     style: {
       data: {
-        fill: colorScale[2],
+        fill: "url(#linear)",
         stroke: "transparent",
       },
     },

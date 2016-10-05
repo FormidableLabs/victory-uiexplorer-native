@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { VictoryArea } from "victory-native";
 import ChartControls from "../components/chart-controls";
 import DataToggle from "../components/toggle-control";
+import VictoryAreaChartWrapper from "../components/victory-area-chart-wrapper";
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
 
@@ -24,13 +25,14 @@ export default class VictoryAreaExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
+        <VictoryAreaChartWrapper>
           <VictoryArea
             animate={{ duration: 400 }}
             data={data[selectedDatasetIndex]}
+            standalone={false}
             {...other}
           />
-        </View>
+        </VictoryAreaChartWrapper>
         <ChartControls>
           <DataToggle
             onChange={this.handleDatasetChange}

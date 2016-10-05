@@ -1,29 +1,32 @@
 import React, { PropTypes } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
+import VictoryAreaChartWrapper from "../components/victory-area-chart-wrapper";
 import { defaultPropMap } from "../utils/props";
-import { colors } from "../utils/colors";
+import { styles } from "../utils/styles";
 
 const Example = ({ module: TargetComponent, selectedDatasetIndex = 0 }) => {
-  const props = defaultPropMap[TargetComponent.displayName];
-  const { data, ...other } = props;
+  const componentName = TargetComponent.displayName;
+  const chartProps = defaultPropMap[componentName];
+  const { data, ...otherProps } = chartProps;
+
+  const customWrapper = customWrappers[componentName];
+  const ComponentWrapper = customWrapper || View;
+  const wrapperProps = customWrapper ? { style: styles.container } : {};
 
   return (
-    <View style={styles.container}>
+    <ComponentWrapper {...wrapperProps}>
       <TargetComponent
         data={data[selectedDatasetIndex]}
-        {...other}
+        standalone={!customWrapper}
+        {...otherProps}
       />
-    </View>
+    </ComponentWrapper>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    borderBottomColor: colors.borderColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});
+const customWrappers = {
+  VictoryArea: VictoryAreaChartWrapper,
+};
 
 Example.propTypes = {
   data: PropTypes.object,

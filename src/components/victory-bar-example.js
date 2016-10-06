@@ -6,6 +6,7 @@ import ChartControls from "../components/chart-controls";
 import ToggleControl from "../components/toggle-control";
 import SliderControl from "../components/slider-control";
 import { defaultPropMap } from "../utils/props";
+import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 const orientations = ["vertical", "horizontal"];
@@ -16,22 +17,37 @@ export default class VictoryBarExample extends Component {
 
   constructor(props) {
     super(props);
+
+    this.handleColorChange = this.handleColorChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleOrientationChange = this.handleOrientationChange.bind(this);
     this.handleBarWidthChange = this.handleBarWidthChange.bind(this);
+
     this.state = {
       barWidth: 40,
+      selectedColorIndex: 0,
       selectedDatasetIndex: 0,
       selectedOrientationIndex: 0,
     };
   }
 
   render() {
-    const { barWidth, selectedDatasetIndex, selectedOrientationIndex } = this.state;
+    const {
+      barWidth,
+      selectedColorIndex,
+      selectedDatasetIndex,
+      selectedOrientationIndex,
+    } = this.state;
     const defaultProps = defaultPropMap.VictoryBar;
     const { data, ...otherDefaultProps } = defaultProps;
     const isHorizontal = orientations[selectedOrientationIndex] === "horizontal";
     delete otherDefaultProps.style;
+
+    const selectedColorScale = colorScales[selectedColorIndex];
+    const dataWithSelectedColors = data[selectedDatasetIndex].map((d, i) => {
+      d.fill = selectedColorScale[i];
+      return d;
+    });
 
     return (
       <View style={styles.container}>
@@ -40,7 +56,7 @@ export default class VictoryBarExample extends Component {
             <VictoryBar
               {...otherDefaultProps}
               animate={{ duration: 400 }}
-              data={data[selectedDatasetIndex]}
+              data={dataWithSelectedColors}
               horizontal={isHorizontal}
               padding={isHorizontal ? horizontalChartPadding : 30}
               style={{ data: { width: barWidth } }}
@@ -54,10 +70,10 @@ export default class VictoryBarExample extends Component {
             title="data"
           />
           <ToggleControl
-            onChange={this.handleOrientationChange}
-            selectedIndex={selectedOrientationIndex}
-            title="orientation"
-            values={orientations}
+            onChange={this.handleColorChange}
+            selectedIndex={selectedColorIndex}
+            title="colorScale"
+            values={["Blue Gray", "Bright", "Yellow"]}
           />
           <SliderControl
             min={5}
@@ -66,9 +82,19 @@ export default class VictoryBarExample extends Component {
             title="barWidth"
             value={barWidth}
           />
+          <ToggleControl
+            onChange={this.handleOrientationChange}
+            selectedIndex={selectedOrientationIndex}
+            title="orientation"
+            values={orientations}
+          />
         </ChartControls>
       </View>
     );
+  }
+
+  handleColorChange(ev) {
+    this.setState({ selectedColorIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 
   handleDatasetChange(ev) {

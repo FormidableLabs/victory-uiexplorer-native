@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryPie } from "victory-native";
+import { VictoryTransition } from "victory-core";
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
@@ -49,16 +50,18 @@ export default class VictoryPieExample extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.chartWrapper}>
-          <VictoryPie
-            {...other}
-            animate={{ duration: 400 }}
-            colorScale={colorScales[selectedColorIndex]}
-            data={data[selectedDatasetIndex]}
-            innerRadius={innerRadius}
-            startAngle={parseInt(startAngles[selectedStartAngleIndex])}
-            endAngle={parseInt(endAngles[selectedEndAngleIndex])}
-            padAngle={padAngle}
-          />
+          <VictoryTransition animationWhitelist={["colorScale", "data", "endAngle", "startAngle"]}>
+            <VictoryPie
+              {...other}
+              animate={{ duration: 400 }}
+              colorScale={colorScales[selectedColorIndex]}
+              data={data[selectedDatasetIndex]}
+              innerRadius={innerRadius}
+              startAngle={parseInt(startAngles[selectedStartAngleIndex])}
+              endAngle={parseInt(endAngles[selectedEndAngleIndex])}
+              padAngle={padAngle}
+            />
+          </VictoryTransition>
         </View>
         <ChartControls>
           <ToggleControl
@@ -75,12 +78,14 @@ export default class VictoryPieExample extends Component {
           <SliderControl
             onChange={this.handleInnerRadiusChange}
             title="innerRadius"
+            value={innerRadius}
           />
           <SliderControl
             min={0}
             max={10}
             onChange={this.handlePadAngleChange}
             title="padAngle"
+            value={padAngle}
           />
           <ToggleControl
             onChange={this.handleStartAngleChange}

@@ -2,31 +2,26 @@ import { datasets } from "./datasets";
 import { colorScale } from "./colors";
 
 const height = 300;
-const padding = {
-  top: 38,
-  right: 36,
-  bottom: 38,
-  left: 36,
-};
+const padding = 30;
 
 export const defaultPropMap = {
   VictoryPie: {
+    colorScale,
+    data: datasets.pie,
+    endAngle: -180,
+    height,
+    padding,
+    startAngle: 180,
     style: {
+      parent: {
+        alignSelf: "center",
+      },
       labels: {
         fill: "none",
         stroke: "transparent",
       },
     },
-    height,
-    padding: {
-      top: 30,
-      bottom: 30,
-      left: 64,
-    },
-    colorScale,
-    data: datasets.pie,
-    startAngle: 180,
-    endAngle: -180,
+    width: height,
   },
   VictoryBar: {
     data: datasets.bar,
@@ -35,7 +30,6 @@ export const defaultPropMap = {
     padding,
     style: {
       data: {
-        fill: colorScale[3],
         width: 40,
       },
     },
@@ -53,8 +47,8 @@ export const defaultPropMap = {
   VictoryArea: {
     data: datasets.area,
     height,
-    interpolation: "cardinal",
     padding,
+    interpolation: "cardinal",
     style: {
       data: {
         fill: "url(#linear)",

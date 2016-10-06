@@ -13,7 +13,7 @@ export default class VictoryAreaChartWrapper extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.chartWrapper}>
         <Svg height="300" width="375">
           <Defs>
             <LinearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">

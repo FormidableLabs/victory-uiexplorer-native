@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { View } from "react-native";
 import Svg, { Defs, LinearGradient, Stop } from "react-native-svg";
-import { colorScale } from "../utils/colors";
+import { colorScale as defaultColorScale } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 export default class VictoryAreaChartWrapper extends Component {
@@ -9,19 +9,26 @@ export default class VictoryAreaChartWrapper extends Component {
 
   static propTypes = {
     children: PropTypes.element,
+    colorScale: PropTypes.arrayOf(PropTypes.string),
+  };
+
+  static defaultProps = {
+    colorScale: defaultColorScale,
   };
 
   render() {
+    const { children, colorScale } = this.props;
+
     return (
       <View style={styles.chartWrapper}>
         <Svg height="300" width="375">
           <Defs>
             <LinearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">
-              <Stop offset="0%" stopColor={colorScale[1]} stopOpacity="1" />
-              <Stop offset="100%" stopColor={colorScale[3]} stopOpacity="0.5" />
+              <Stop offset="0%" stopColor={colorScale[1]} stopOpacity="0.8" />
+              <Stop offset="100%" stopColor={colorScale[3]} stopOpacity="0.4" />
             </LinearGradient>
           </Defs>
-          {this.props.children}
+          {children}
         </Svg>
       </View>
     );

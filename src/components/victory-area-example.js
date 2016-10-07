@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryArea, VictoryGroup, VictoryScatter } from "victory-native";
-import ChartControls from "../components/chart-controls";
-import ToggleControl from "../components/toggle-control";
-import Checkbox from "../components/checkbox";
+import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
+import ChartControls from "./chart-controls";
+import ToggleControl from "./toggle-control";
+import Checkbox from "./checkbox";
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
-import { colorScale, colorScales } from "../utils/colors";
-
-const brights = colorScales[1];
-const xDomain = { x: [1.25, 4.75] };
-const fills = [colorScale[2], brights[1], brights[2], brights[3]];
+import { colorScales } from "../utils/colors";
 
 export default class VictoryAreaExample extends Component {
   static displayName = "VictoryAreaExample";
@@ -19,10 +16,10 @@ export default class VictoryAreaExample extends Component {
     super(props);
     this.handleDataMarkerChange = this.handleDataMarkerChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
-    this.handleFillChange = this.handleFillChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
     this.state = {
       selectedDatasetIndex: 0,
-      selectedFillIndex: 0,
+      selectedColorIndex: 0,
       showDataMarkers: false,
     };
   }
@@ -30,35 +27,31 @@ export default class VictoryAreaExample extends Component {
   render() {
     const {
       selectedDatasetIndex,
-      selectedFillIndex,
+      selectedColorIndex,
       showDataMarkers,
     } = this.state;
+
     const defaultProps = defaultPropMap.VictoryArea;
-    const { data, ...otherDefaultProps } = defaultProps;
+    const { data, interpolation, style, ...otherDefaultProps } = defaultProps;
     const selectedDataset = data[selectedDatasetIndex];
-    const selectedFill = fills[selectedFillIndex];
+    const selectedColorScale = colorScales[selectedColorIndex];
+    const selectedFill = selectedColorScale[1];
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
-          <VictoryGroup animate={{ duration: 400 }}>
+        <VictoryAreaChartWrapper colorScale={selectedColorScale}>
+          <VictoryGroup
+            {...otherDefaultProps}
+            animate={{ duration: 400 }}
+            data={selectedDataset}
+            standalone={false}
+          >
             <VictoryArea
-              {...otherDefaultProps}
-              data={selectedDataset}
-              domain={xDomain}
-              style={{
-                data: {
-                  fill: selectedFill,
-                  opacity: 0.5,
-                  stroke: "transparent",
-                },
-              }}
+              interpolation={interpolation}
+              style={style}
             />
             {showDataMarkers &&
               <VictoryScatter
-                {...otherDefaultProps}
-                data={selectedDataset}
-                domain={xDomain}
                 labels={["a", "b", "c", "d", "e"]}
                 size={4}
                 style={{
@@ -75,7 +68,7 @@ export default class VictoryAreaExample extends Component {
               />
             }
           </VictoryGroup>
-        </View>
+        </VictoryAreaChartWrapper>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}
@@ -83,10 +76,10 @@ export default class VictoryAreaExample extends Component {
             title="data"
           />
           <ToggleControl
-            onChange={this.handleFillChange}
-            selectedIndex={selectedFillIndex}
-            title="fill"
-            values={["Blue Gray", "Purple", "Pink", "Persimmon"]}
+            onChange={this.handleColorChange}
+            selectedIndex={selectedColorIndex}
+            title="colorScale"
+            values={["Blue Gray", "Bright", "Yellow"]}
           />
           <Checkbox
             label="Show data markers and labels"
@@ -107,9 +100,9 @@ export default class VictoryAreaExample extends Component {
     this.setState({ showDataMarkers: !this.state.showDataMarkers });
   }
 
-  handleFillChange(ev) {
+  handleColorChange(ev) {
     this.setState({
-      selectedFillIndex: ev.nativeEvent.selectedSegmentIndex,
+      selectedColorIndex: ev.nativeEvent.selectedSegmentIndex,
     });
   }
 }

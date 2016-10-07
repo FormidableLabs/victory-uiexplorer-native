@@ -86,7 +86,7 @@ export default class VictoryLineExample extends Component {
                   },
                   labels: {
                     fill: strokeColor,
-                    fontSize:  Math.max(12, size * 2),
+                    fontSize: Math.max(12, size * 2),
                     fontWeight: "600",
                     padding: Math.max(8, size * 2),
                   },

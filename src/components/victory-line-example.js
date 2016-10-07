@@ -11,6 +11,8 @@ import { colorScale, colorScales } from "../utils/colors";
 
 const brights = colorScales[1];
 const strokeColors = [colorScale[3], brights[1], brights[2], brights[3]];
+const dataLabels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+const toggleValues = ["Blue Gray", "Purple", "Pink", "Persimmon"];
 
 export default class VictoryLineExample extends Component {
   static displayName = "VictoryLineExample";
@@ -18,6 +20,7 @@ export default class VictoryLineExample extends Component {
   constructor(props) {
     super(props);
 
+    this.handleDataLabelsChange = this.handleDataLabelsChange.bind(this);
     this.handleDataPointChange = this.handleDataPointChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleLineLabelChange = this.handleLineLabelChange.bind(this);
@@ -25,10 +28,11 @@ export default class VictoryLineExample extends Component {
     this.handleStrokeWidthChange = this.handleStrokeWidthChange.bind(this);
 
     this.state = {
+      selectedDatasetIndex: 0,
+      selectedStrokeColorIndex: 0,
+      showDataLabels: false,
       showDataPoints: false,
       showLineLabel: false,
-      selectedStrokeColorIndex: 0,
-      selectedDatasetIndex: 0,
       strokeWidth: 2,
     };
   }
@@ -37,14 +41,17 @@ export default class VictoryLineExample extends Component {
     const {
       selectedStrokeColorIndex,
       selectedDatasetIndex,
-      showLineLabel,
+      showDataLabels,
       showDataPoints,
+      showLineLabel,
       strokeWidth,
     } = this.state;
+
     const defaultProps = defaultPropMap.VictoryLine;
     const { data, ...otherDefaultProps } = defaultProps;
     const strokeColor = strokeColors[selectedStrokeColorIndex];
     const selectedDataset = data[selectedDatasetIndex];
+    const size = Math.max(3, strokeWidth * 1.3);
 
     return (
       <View style={styles.container}>
@@ -69,12 +76,19 @@ export default class VictoryLineExample extends Component {
             {showDataPoints &&
               <VictoryScatter
                 data={selectedDataset}
-                size={Math.max(3, strokeWidth * 1.3)}
+                labels={showDataLabels ? dataLabels : undefined}
+                size={size}
                 style={{
                   data: {
                     fill: strokeColor,
                     stroke: "white",
                     strokeWidth: 2,
+                  },
+                  labels: {
+                    fill: strokeColor,
+                    fontSize:  Math.max(12, size * 2),
+                    fontWeight: "600",
+                    padding: Math.max(8, size * 2),
                   },
                 }}
               />
@@ -91,11 +105,11 @@ export default class VictoryLineExample extends Component {
             onChange={this.handleStrokeColorChange}
             selectedIndex={selectedStrokeColorIndex}
             title="strokeColor"
-            values={["Blue Gray", "Purple", "Pink", "Persimmon"]}
+            values={toggleValues}
           />
           <SliderControl
             min={1}
-            max={10}
+            max={8}
             onChange={this.handleStrokeWidthChange}
             title="strokeWidth"
             value={strokeWidth}
@@ -107,6 +121,10 @@ export default class VictoryLineExample extends Component {
           <Checkbox
             label="Show line label"
             onChange={this.handleLineLabelChange}
+          />
+          <Checkbox
+            label="Show data labels"
+            onChange={this.handleDataLabelsChange}
           />
         </ChartControls>
       </View>
@@ -135,5 +153,9 @@ export default class VictoryLineExample extends Component {
 
   handleDataPointChange() {
     this.setState({ showDataPoints: !this.state.showDataPoints });
+  }
+
+  handleDataLabelsChange() {
+    this.setState({ showDataLabels: !this.state.showDataLabels });
   }
 }

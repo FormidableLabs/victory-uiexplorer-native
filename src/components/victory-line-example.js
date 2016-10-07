@@ -7,10 +7,10 @@ import SliderControl from "../components/slider-control";
 import Checkbox from "../components/checkbox";
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
-import { colorScales } from "../utils/colors";
+import { colorScale, colorScales } from "../utils/colors";
 
 const brights = colorScales[1];
-const strokeColors = [colorScales[0][3], brights[1], brights[2], brights[3]];
+const strokeColors = [colorScale[3], brights[1], brights[2], brights[3]];
 
 export default class VictoryLineExample extends Component {
   static displayName = "VictoryLineExample";
@@ -49,10 +49,9 @@ export default class VictoryLineExample extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.chartWrapper}>
-          <VictoryGroup>
+          <VictoryGroup animate={{ duration: 400 }}>
             <VictoryLine
               {...otherDefaultProps}
-              animate={{ duration: 400 }}
               data={selectedDataset}
               label={showLineLabel ? "LINE" : undefined}
               style={{
@@ -69,7 +68,6 @@ export default class VictoryLineExample extends Component {
             />
             {showDataPoints &&
               <VictoryScatter
-                animate={{ duration: 400 }}
                 data={selectedDataset}
                 size={Math.max(3, strokeWidth * 1.3)}
                 style={{

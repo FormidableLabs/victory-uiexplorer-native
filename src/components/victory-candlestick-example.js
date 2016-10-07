@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryCandlestick } from "victory-native";
 import ChartControls from "../components/chart-controls";
-import DataToggle from "../components/toggle-control";
+import ToggleControl from "../components/toggle-control";
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
 
@@ -19,22 +19,23 @@ export default class VictoryCandlestickExample extends Component {
 
   render() {
     const { selectedDatasetIndex } = this.state;
-    const props = defaultPropMap.VictoryCandlestick;
-    const { data, ...other } = props;
+    const defaultProps = defaultPropMap.VictoryCandlestick;
+    const { data, ...otherDefaultProps } = defaultProps;
 
     return (
       <View style={styles.container}>
         <View style={styles.chartWrapper}>
           <VictoryCandlestick
+            {...otherDefaultProps}
             animate={{ duration: 400 }}
             data={data[selectedDatasetIndex]}
-            {...other}
           />
         </View>
         <ChartControls>
-          <DataToggle
+          <ToggleControl
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
+            title="data"
           />
         </ChartControls>
       </View>

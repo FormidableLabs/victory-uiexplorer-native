@@ -19,22 +19,23 @@ export default class VictoryScatterExample extends Component {
 
   render() {
     const { selectedDatasetIndex } = this.state;
-    const props = defaultPropMap.VictoryScatter;
-    const { data, ...other } = props;
+    const defaultProps = defaultPropMap.VictoryScatter;
+    const { data, ...otherDefaultProps } = defaultProps;
 
     return (
       <View style={styles.container}>
         <View style={styles.chartWrapper}>
           <VictoryScatter
+            {...otherDefaultProps}
             animate={{ duration: 400 }}
             data={data[selectedDatasetIndex]}
-            {...other}
           />
         </View>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
+            title="data"
           />
         </ChartControls>
       </View>

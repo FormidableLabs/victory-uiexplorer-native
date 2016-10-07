@@ -1,7 +1,7 @@
 {
   "name": "VictoryNativeUIExplorer",
   "version": "0.0.1",
-  "description": "A sample app that showcases Victory Native components",
+  "description": "A React Native app for iOS and Android that showcases Victory Native components",
   "author": "Angela Nicholas",
   "license": "MIT",
   "private": true,

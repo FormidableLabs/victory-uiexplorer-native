@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryCandlestick } from "victory-native";
+
 import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
-import ToggleControl from "./toggle-control";
-import { defaultPropMap, defaultDuration } from "../utils/props";
+import Toggle from "./toggle";
+
+import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
 
 const defaultProps = defaultPropMap.VictoryCandlestick;
@@ -29,12 +31,15 @@ export default class VictoryCandlestickExample extends Component {
         <ChartWrapper dropShadow>
           <VictoryCandlestick
             {...otherDefaultProps}
-            animate={defaultDuration}
+            animate={{
+              duration: 400,
+              onLoad: { duration: 0.0000001 },
+            }}
             data={data[selectedDatasetIndex]}
           />
         </ChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"

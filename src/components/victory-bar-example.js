@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryBar } from "victory-native";
 import { VictoryTransition } from "victory-core";
+
 import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
-import ToggleControl from "./toggle-control";
-import SliderControl from "./slider-control";
+import Toggle from "./toggle";
+import Slider from "./slider";
+
 import { defaultPropMap } from "../utils/props";
 import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
@@ -68,25 +70,25 @@ export default class VictoryBarExample extends Component {
           </VictoryTransition>
         </ChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleColorChange}
             selectedIndex={selectedColorIndex}
             title="colorScale"
             values={["Blue Gray", "Bright", "Yellow"]}
           />
-          <SliderControl
+          <Slider
             min={5}
             max={60}
             onChange={this.handleBarWidthChange}
             title="barWidth"
             value={barWidth}
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleOrientationChange}
             selectedIndex={selectedOrientationIndex}
             title="orientation"

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryLine, VictoryGroup, VictoryScatter } from "victory-native";
+
 import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
-import ToggleControl from "./toggle-control";
-import SliderControl from "./slider-control";
+import Toggle from "./toggle";
+import Slider from "./slider";
 import Checkbox from "./checkbox";
+
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
@@ -97,18 +99,18 @@ export default class VictoryLineExample extends Component {
           </VictoryGroup>
         </ChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleStrokeColorChange}
             selectedIndex={selectedStrokeColorIndex}
             title="strokeColor"
             values={toggleValues}
           />
-          <SliderControl
+          <Slider
             min={1}
             max={8}
             onChange={this.handleStrokeWidthChange}

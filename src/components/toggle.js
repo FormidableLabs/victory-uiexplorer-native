@@ -1,9 +1,9 @@
 import React, { PropTypes } from "react";
 import { SegmentedControlIOS, View } from "react-native";
-import Title from "../components/title";
+import Title from "./title";
 import { colorScale } from "../utils/colors";
 
-const ToggleControl = ({
+const Toggle = ({
   onChange = () => {},
   selectedIndex,
   title,
@@ -21,11 +21,11 @@ const ToggleControl = ({
   </View>
 );
 
-ToggleControl.propTypes = {
+Toggle.propTypes = {
   onChange: PropTypes.func,
   selectedIndex: PropTypes.number,
   title: PropTypes.string,
   values: PropTypes.array,
 };
 
-export default ToggleControl;
+export default Toggle;

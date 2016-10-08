@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import _ from "lodash";
 import { VictoryScatter } from "victory-native";
 import { VictoryTransition } from "victory-core";
+import _ from "lodash";
+
 import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
-import ToggleControl from "./toggle-control";
-import SliderControl from "./slider-control";
+import Toggle from "./toggle";
+import Slider from "./slider";
 import Checkbox from "./checkbox";
+
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
@@ -84,24 +86,24 @@ export default class VictoryScatterExample extends Component {
           </VictoryTransition>
         </ChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleSymbolChange}
             selectedIndex={selectedSymbolIndex}
             title="symbol"
             values={symbols}
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleFillChange}
             selectedIndex={selectedFillIndex}
             title="fill"
             values={toggleValues}
           />
-          <SliderControl
+          <Slider
             min={5}
             max={16}
             onChange={this.handleSizeChange}

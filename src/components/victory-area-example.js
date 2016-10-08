@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryArea, VictoryGroup, VictoryScatter } from "victory-native";
+
 import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import ChartControls from "./chart-controls";
-import ToggleControl from "./toggle-control";
+import Toggle from "./toggle";
 import Checkbox from "./checkbox";
+
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScales } from "../utils/colors";
@@ -74,12 +76,12 @@ export default class VictoryAreaExample extends Component {
           </VictoryGroup>
         </VictoryAreaChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleColorChange}
             selectedIndex={selectedColorIndex}
             title="colorScale"

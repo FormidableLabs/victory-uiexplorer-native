@@ -1,20 +1,17 @@
 import React, { PropTypes } from "react";
-import { View } from "react-native";
-import VictoryAreaChartWrapper from "../components/victory-area-chart-wrapper";
+import ChartWrapper from "./chart-wrapper";
+import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import { defaultPropMap } from "../utils/props";
-import { styles } from "../utils/styles";
 
 const Example = ({ module: TargetComponent, selectedDatasetIndex = 0 }) => {
   const componentName = TargetComponent.displayName;
   const chartProps = defaultPropMap[componentName];
   const { data, ...otherProps } = chartProps;
-
   const customWrapper = customWrappers[componentName];
-  const ComponentWrapper = customWrapper || View;
-  const wrapperProps = customWrapper ? { style: styles.chartWrapper } : {};
+  const ComponentWrapper = customWrapper || ChartWrapper;
 
   return (
-    <ComponentWrapper {...wrapperProps}>
+    <ComponentWrapper>
       <TargetComponent
         data={data[selectedDatasetIndex]}
         standalone={!customWrapper}

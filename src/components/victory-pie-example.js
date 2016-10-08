@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryPie } from "victory-native";
 import { VictoryTransition } from "victory-core";
+
 import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
-import ToggleControl from "./toggle-control";
-import SliderControl from "./slider-control";
+import Toggle from "./toggle";
+import Slider from "./slider";
+
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
@@ -67,36 +69,36 @@ export default class VictoryPieExample extends Component {
           </VictoryTransition>
         </ChartWrapper>
         <ChartControls>
-          <ToggleControl
+          <Toggle
             onChange={this.handleDatasetChange}
             selectedIndex={selectedDatasetIndex}
             title="data"
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleColorChange}
             selectedIndex={selectedColorIndex}
             title="colorScale"
             values={colorScaleToggleValues}
           />
-          <SliderControl
+          <Slider
             onChange={this.handleInnerRadiusChange}
             title="innerRadius"
             value={innerRadius}
           />
-          <SliderControl
+          <Slider
             min={0}
             max={10}
             onChange={this.handlePadAngleChange}
             title="padAngle"
             value={padAngle}
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleStartAngleChange}
             selectedIndex={selectedStartAngleIndex}
             title="startAngle"
             values={startAngles}
           />
-          <ToggleControl
+          <Toggle
             onChange={this.handleEndAngleChange}
             selectedIndex={selectedEndAngleIndex}
             title="endAngle"

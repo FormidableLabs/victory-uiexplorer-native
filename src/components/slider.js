@@ -1,8 +1,8 @@
 import React, { PropTypes } from "react";
-import { Slider, View } from "react-native";
-import Title from "../components/title";
+import { Slider as RNSlider, View } from "react-native";
+import Title from "./title";
 
-const SliderControl = ({
+const Slider = ({
   max = 100,
   min = 0,
   onChange = () => {},
@@ -11,7 +11,7 @@ const SliderControl = ({
 }) => (
   <View style={{ marginBottom: 20 }}>
     <Title text={title} style={{ marginBottom: 10 }} />
-    <Slider
+    <RNSlider
       minimumValue={min}
       maximumValue={max}
       onValueChange={onChange}
@@ -21,7 +21,7 @@ const SliderControl = ({
   </View>
 );
 
-SliderControl.propTypes = {
+Slider.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   onChange: PropTypes.func,
@@ -29,4 +29,4 @@ SliderControl.propTypes = {
   value: PropTypes.number,
 };
 
-export default SliderControl;
+export default Slider;

@@ -60,7 +60,12 @@ export default class VictoryScatterExample extends Component {
           <VictoryTransition animationWhitelist={["data", "style"]}>
             <VictoryScatter
               {...otherDefaultProps}
-              animate={{ duration: 400 }}
+              animate={{
+                duration: 400,
+                onLoad: {
+                  duration: 0.0000001,
+                },
+              }}
               size={size}
               data={rawData[selectedDatasetIndex]}
               labels={showLabels ? labels : undefined}

@@ -61,11 +61,6 @@ export const defaultPropMap = {
     size: 7,
     height,
     padding,
-    style: {
-      data: {
-        stroke: "transparent",
-      },
-    },
   },
   VictoryCandlestick: {
     data: datasets.candlestick,

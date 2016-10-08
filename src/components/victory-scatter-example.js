@@ -15,7 +15,7 @@ import { styles } from "../utils/styles";
 import { brights, blueGrays, solidColorToggleValues } from "../utils/colors";
 
 const fills = [blueGrays[2], brights[1], brights[2], brights[3]];
-const symbols = ["circle", "star", "plus", "diamond"];
+const symbols = ["Circle", "Star", "Plus", "Diamond"];
 const labels = ["a", "b", "c", "d", "e", "f", "g"];
 
 const defaultProps = defaultPropMap.VictoryScatter;

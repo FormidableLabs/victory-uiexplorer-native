@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryLine, VictoryGroup, VictoryScatter } from "victory-native";
 import ChartControls from "./chart-controls";
+import ChartWrapper from "./chart-wrapper";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
 import Checkbox from "./checkbox";
-import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
+import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
 
@@ -55,10 +56,7 @@ export default class VictoryLineExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={styles.chartWrapper}
-          {...shadowProps}
-        >
+        <ChartWrapper dropShadow>
           <VictoryGroup animate={defaultDuration}>
             <VictoryLine
               {...otherDefaultProps}
@@ -97,7 +95,7 @@ export default class VictoryLineExample extends Component {
               />
             }
           </VictoryGroup>
-        </View>
+        </ChartWrapper>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}

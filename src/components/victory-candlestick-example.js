@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryCandlestick } from "victory-native";
 import ChartControls from "./chart-controls";
+import ChartWrapper from "./chart-wrapper";
 import ToggleControl from "./toggle-control";
-import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
+import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
 
 const defaultProps = defaultPropMap.VictoryCandlestick;
@@ -25,16 +26,13 @@ export default class VictoryCandlestickExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={styles.chartWrapper}
-          {...shadowProps}
-        >
+        <ChartWrapper dropShadow>
           <VictoryCandlestick
             {...otherDefaultProps}
             animate={defaultDuration}
             data={data[selectedDatasetIndex]}
           />
-        </View>
+        </ChartWrapper>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}

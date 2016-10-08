@@ -5,7 +5,7 @@ import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import Checkbox from "./checkbox";
-import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
+import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScales } from "../utils/colors";
 
@@ -41,8 +41,8 @@ export default class VictoryAreaExample extends Component {
     return (
       <View style={styles.container}>
         <VictoryAreaChartWrapper
+          dropShadow
           colorScale={selectedColorScale}
-          {...shadowProps}
         >
           <VictoryGroup
             {...otherDefaultProps}

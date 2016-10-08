@@ -3,9 +3,10 @@ import { View } from "react-native";
 import { VictoryPie } from "victory-native";
 import { VictoryTransition } from "victory-core";
 import ChartControls from "./chart-controls";
+import ChartWrapper from "./chart-wrapper";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
-import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
+import { defaultPropMap, defaultDuration } from "../utils/props";
 import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
 
@@ -51,10 +52,7 @@ export default class VictoryPieExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={styles.chartWrapper}
-          {...shadowProps}
-        >
+        <ChartWrapper dropShadow>
           <VictoryTransition animationWhitelist={animationWhitelist}>
             <VictoryPie
               {...otherDefaultProps}
@@ -67,7 +65,7 @@ export default class VictoryPieExample extends Component {
               padAngle={padAngle}
             />
           </VictoryTransition>
-        </View>
+        </ChartWrapper>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}

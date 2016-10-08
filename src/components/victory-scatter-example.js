@@ -3,11 +3,12 @@ import { View } from "react-native";
 import _ from "lodash";
 import { VictoryScatter } from "victory-native";
 import { VictoryTransition } from "victory-core";
-import ChartControls from "../components/chart-controls";
-import ToggleControl from "../components/toggle-control";
-import SliderControl from "../components/slider-control";
-import Checkbox from "../components/checkbox";
-import { defaultPropMap, shadowProps } from "../utils/props";
+import ChartControls from "./chart-controls";
+import ChartWrapper from "./chart-wrapper";
+import ToggleControl from "./toggle-control";
+import SliderControl from "./slider-control";
+import Checkbox from "./checkbox";
+import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
 
@@ -56,10 +57,7 @@ export default class VictoryScatterExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View
-          style={styles.chartWrapper}
-          {...shadowProps}
-        >
+        <ChartWrapper dropShadow>
           <VictoryTransition animationWhitelist={["data", "style"]}>
             <VictoryScatter
               {...otherDefaultProps}
@@ -84,7 +82,7 @@ export default class VictoryScatterExample extends Component {
               }}
             />
           </VictoryTransition>
-        </View>
+        </ChartWrapper>
         <ChartControls>
           <ToggleControl
             onChange={this.handleDatasetChange}

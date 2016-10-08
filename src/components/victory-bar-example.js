@@ -45,7 +45,8 @@ export default class VictoryBarExample extends Component {
       selectedOrientationIndex,
     } = this.state;
 
-    const isHorizontal = orientationToggleValues[selectedOrientationIndex] === "horizontal";
+    const isHorizontal =
+      orientationToggleValues[selectedOrientationIndex] === orientationToggleValues[1];
     const selectedColorScale = colorScales[selectedColorScaleIndex];
     const dataWithSelectedColors = data[selectedDatasetIndex].map((d, i) => {
       d.fill = selectedColorScale[i];

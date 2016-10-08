@@ -17,10 +17,13 @@ export default class VictoryAreaChartWrapper extends Component {
   };
 
   render() {
-    const { children, colorScale } = this.props;
+    const { children, colorScale, ...otherProps } = this.props;
 
     return (
-      <View style={styles.chartWrapper}>
+      <View
+        style={styles.chartWrapper}
+        {...otherProps}
+      >
         <Svg height="300" width="375">
           <Defs>
             <LinearGradient id="linear" x1="0%" y1="0%" x2="0%" y2="100%">

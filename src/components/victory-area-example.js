@@ -5,9 +5,12 @@ import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import Checkbox from "./checkbox";
-import { defaultPropMap } from "../utils/props";
+import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScales } from "../utils/colors";
+
+const defaultProps = defaultPropMap.VictoryArea;
+const { data, interpolation, style, ...otherDefaultProps } = defaultProps;
 
 export default class VictoryAreaExample extends Component {
   static displayName = "VictoryAreaExample";
@@ -31,18 +34,19 @@ export default class VictoryAreaExample extends Component {
       showDataMarkers,
     } = this.state;
 
-    const defaultProps = defaultPropMap.VictoryArea;
-    const { data, interpolation, style, ...otherDefaultProps } = defaultProps;
     const selectedDataset = data[selectedDatasetIndex];
     const selectedColorScale = colorScales[selectedColorIndex];
     const selectedFill = selectedColorScale[1];
 
     return (
       <View style={styles.container}>
-        <VictoryAreaChartWrapper colorScale={selectedColorScale}>
+        <VictoryAreaChartWrapper
+          colorScale={selectedColorScale}
+          {...shadowProps}
+        >
           <VictoryGroup
             {...otherDefaultProps}
-            animate={{ duration: 400 }}
+            animate={defaultDuration}
             data={selectedDataset}
             standalone={false}
           >

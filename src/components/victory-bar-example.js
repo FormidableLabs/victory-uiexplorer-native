@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryBar } from "victory-native";
 import { VictoryTransition } from "victory-core";
-import ChartControls from "../components/chart-controls";
-import ToggleControl from "../components/toggle-control";
-import SliderControl from "../components/slider-control";
-import { defaultPropMap } from "../utils/props";
+import ChartControls from "./chart-controls";
+import ToggleControl from "./toggle-control";
+import SliderControl from "./slider-control";
+import { defaultPropMap, shadowProps } from "../utils/props";
 import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 const orientations = ["vertical", "horizontal"];
 const horizontalChartPadding = { top: 50, right: 80, bottom: 50, left: 80 };
+const defaultProps = defaultPropMap.VictoryBar;
+const { data, ...otherDefaultProps } = defaultProps;
+delete otherDefaultProps.style;
 
 export default class VictoryBarExample extends Component {
   static displayName = "VictoryBarExample";
@@ -38,11 +41,8 @@ export default class VictoryBarExample extends Component {
       selectedDatasetIndex,
       selectedOrientationIndex,
     } = this.state;
-    const defaultProps = defaultPropMap.VictoryBar;
-    const { data, ...otherDefaultProps } = defaultProps;
-    const isHorizontal = orientations[selectedOrientationIndex] === "horizontal";
-    delete otherDefaultProps.style;
 
+    const isHorizontal = orientations[selectedOrientationIndex] === "horizontal";
     const selectedColorScale = colorScales[selectedColorIndex];
     const dataWithSelectedColors = data[selectedDatasetIndex].map((d, i) => {
       d.fill = selectedColorScale[i];
@@ -51,11 +51,17 @@ export default class VictoryBarExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
+        <View
+          style={styles.chartWrapper}
+          {...shadowProps}
+        >
           <VictoryTransition animationWhitelist={["data"]}>
             <VictoryBar
               {...otherDefaultProps}
-              animate={{ duration: 400 }}
+              animate={{
+                duration: 400,
+                onLoad: { duration: 0.0000001 },
+              }}
               data={dataWithSelectedColors}
               horizontal={isHorizontal}
               padding={isHorizontal ? horizontalChartPadding : 30}

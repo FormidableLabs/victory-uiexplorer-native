@@ -7,7 +7,7 @@ import ChartControls from "../components/chart-controls";
 import ToggleControl from "../components/toggle-control";
 import SliderControl from "../components/slider-control";
 import Checkbox from "../components/checkbox";
-import { defaultPropMap } from "../utils/props";
+import { defaultPropMap, shadowProps } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
 
@@ -56,15 +56,16 @@ export default class VictoryScatterExample extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
+        <View
+          style={styles.chartWrapper}
+          {...shadowProps}
+        >
           <VictoryTransition animationWhitelist={["data", "style"]}>
             <VictoryScatter
               {...otherDefaultProps}
               animate={{
                 duration: 400,
-                onLoad: {
-                  duration: 0.0000001,
-                },
+                onLoad: { duration: 0.0000001 },
               }}
               size={size}
               data={rawData[selectedDatasetIndex]}
@@ -76,7 +77,7 @@ export default class VictoryScatterExample extends Component {
                 },
                 labels: {
                   fill: selectedFill,
-                  fontSize: Math.max(12, size * 2),
+                  fontSize: Math.max(12, size * 1.5),
                   fontWeight: "600",
                   padding: size * 2,
                 },

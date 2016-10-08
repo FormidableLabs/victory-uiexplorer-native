@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryCandlestick } from "victory-native";
-import ChartControls from "../components/chart-controls";
-import ToggleControl from "../components/toggle-control";
-import { defaultPropMap } from "../utils/props";
+import ChartControls from "./chart-controls";
+import ToggleControl from "./toggle-control";
+import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
 import { styles } from "../utils/styles";
+
+const defaultProps = defaultPropMap.VictoryCandlestick;
+const { data, ...otherDefaultProps } = defaultProps;
 
 export default class VictoryCandlestickExample extends Component {
   static displayName = "VictoryCandlestickExample";
@@ -19,15 +22,16 @@ export default class VictoryCandlestickExample extends Component {
 
   render() {
     const { selectedDatasetIndex } = this.state;
-    const defaultProps = defaultPropMap.VictoryCandlestick;
-    const { data, ...otherDefaultProps } = defaultProps;
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
+        <View
+          style={styles.chartWrapper}
+          {...shadowProps}
+        >
           <VictoryCandlestick
             {...otherDefaultProps}
-            animate={{ duration: 400 }}
+            animate={defaultDuration}
             data={data[selectedDatasetIndex]}
           />
         </View>
@@ -43,8 +47,6 @@ export default class VictoryCandlestickExample extends Component {
   }
 
   handleDatasetChange(ev) {
-    this.setState({
-      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
-    });
+    this.setState({ selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 }

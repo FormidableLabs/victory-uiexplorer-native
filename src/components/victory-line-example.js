@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { VictoryLine, VictoryGroup, VictoryScatter } from "victory-native";
-import ChartControls from "../components/chart-controls";
-import ToggleControl from "../components/toggle-control";
-import SliderControl from "../components/slider-control";
-import Checkbox from "../components/checkbox";
-import { defaultPropMap } from "../utils/props";
+import ChartControls from "./chart-controls";
+import ToggleControl from "./toggle-control";
+import SliderControl from "./slider-control";
+import Checkbox from "./checkbox";
+import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
 import { styles } from "../utils/styles";
 import { colorScale, colorScales } from "../utils/colors";
 
@@ -13,6 +13,8 @@ const brights = colorScales[1];
 const strokeColors = [colorScale[3], brights[1], brights[2], brights[3]];
 const dataLabels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
 const toggleValues = ["Blue Gray", "Purple", "Pink", "Persimmon"];
+const defaultProps = defaultPropMap.VictoryLine;
+const { data, ...otherDefaultProps } = defaultProps;
 
 export default class VictoryLineExample extends Component {
   static displayName = "VictoryLineExample";
@@ -47,16 +49,17 @@ export default class VictoryLineExample extends Component {
       strokeWidth,
     } = this.state;
 
-    const defaultProps = defaultPropMap.VictoryLine;
-    const { data, ...otherDefaultProps } = defaultProps;
     const strokeColor = strokeColors[selectedStrokeColorIndex];
     const selectedDataset = data[selectedDatasetIndex];
     const size = Math.max(3, strokeWidth * 1.3);
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
-          <VictoryGroup animate={{ duration: 400 }}>
+        <View
+          style={styles.chartWrapper}
+          {...shadowProps}
+        >
+          <VictoryGroup animate={defaultDuration}>
             <VictoryLine
               {...otherDefaultProps}
               data={selectedDataset}
@@ -132,15 +135,11 @@ export default class VictoryLineExample extends Component {
   }
 
   handleDatasetChange(ev) {
-    this.setState({
-      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
-    });
+    this.setState({ selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 
   handleStrokeColorChange(ev) {
-    this.setState({
-      selectedStrokeColorIndex: ev.nativeEvent.selectedSegmentIndex,
-    });
+    this.setState({ selectedStrokeColorIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 
   handleStrokeWidthChange(strokeWidth) {

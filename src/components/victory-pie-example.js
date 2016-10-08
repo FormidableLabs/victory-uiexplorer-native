@@ -5,12 +5,16 @@ import { VictoryTransition } from "victory-core";
 import ChartControls from "./chart-controls";
 import ToggleControl from "./toggle-control";
 import SliderControl from "./slider-control";
-import { defaultPropMap } from "../utils/props";
+import { defaultPropMap, defaultDuration, shadowProps } from "../utils/props";
 import { colorScales } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 const endAngles = ["-180", "-135", "-90"];
 const startAngles = ["180", "135", "90"];
+const defaultProps = defaultPropMap.VictoryPie;
+const { data, ...otherDefaultProps } = defaultProps;
+const animationWhitelist = ["colorScale", "data", "endAngle", "startAngle"];
+const colorScaleToggleValues = ["Blue Gray", "Bright", "Yellow"];
 
 export default class VictoryPieExample extends Component {
   static displayName = "VictoryPieExample";
@@ -44,16 +48,17 @@ export default class VictoryPieExample extends Component {
       selectedEndAngleIndex,
       selectedStartAngleIndex,
     } = this.state;
-    const props = defaultPropMap.VictoryPie;
-    const { data, ...other } = props;
 
     return (
       <View style={styles.container}>
-        <View style={styles.chartWrapper}>
-          <VictoryTransition animationWhitelist={["colorScale", "data", "endAngle", "startAngle"]}>
+        <View
+          style={styles.chartWrapper}
+          {...shadowProps}
+        >
+          <VictoryTransition animationWhitelist={animationWhitelist}>
             <VictoryPie
-              {...other}
-              animate={{ duration: 400 }}
+              {...otherDefaultProps}
+              animate={defaultDuration}
               colorScale={colorScales[selectedColorIndex]}
               data={data[selectedDatasetIndex]}
               innerRadius={innerRadius}
@@ -73,7 +78,7 @@ export default class VictoryPieExample extends Component {
             onChange={this.handleColorChange}
             selectedIndex={selectedColorIndex}
             title="colorScale"
-            values={["Blue Gray", "Bright", "Yellow"]}
+            values={colorScaleToggleValues}
           />
           <SliderControl
             onChange={this.handleInnerRadiusChange}

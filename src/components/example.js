@@ -11,7 +11,7 @@ const Example = ({ module: TargetComponent, selectedDatasetIndex = 0 }) => {
 
   const customWrapper = customWrappers[componentName];
   const ComponentWrapper = customWrapper || View;
-  const wrapperProps = customWrapper ? { style: styles.container } : {};
+  const wrapperProps = customWrapper ? { style: styles.chartWrapper } : {};
 
   return (
     <ComponentWrapper {...wrapperProps}>

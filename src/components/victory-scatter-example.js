@@ -68,7 +68,7 @@ export default class VictoryScatterExample extends Component {
               size={size}
               data={rawData[selectedDatasetIndex]}
               labels={showLabels ? labels : undefined}
-              symbol={symbols[selectedSymbolIndex]}
+              symbol={symbols[selectedSymbolIndex].toLowerCase()}
               style={{
                 data: {
                   fill: selectedFill,

@@ -10,14 +10,12 @@ import Toggle from "./toggle";
 import Slider from "./slider";
 import Checkbox from "./checkbox";
 
+import { solidColors, solidColorToggleValues } from "../utils/colors";
+import { dataLabels } from "../utils/data";
 import { defaultPropMap } from "../utils/props";
-import { styles } from "../utils/styles";
-import { brights, blueGrays, solidColorToggleValues } from "../utils/colors";
+import { styles, minFontSize } from "../utils/styles";
 
-const fills = [blueGrays[2], brights[1], brights[2], brights[3]];
 const symbols = ["Circle", "Star", "Plus", "Diamond"];
-const labels = ["a", "b", "c", "d", "e", "f", "g"];
-
 const defaultProps = defaultPropMap.VictoryScatter;
 const { data, ...otherDefaultProps } = defaultProps;
 const rawData = [0, 1, 2].map((i) => {
@@ -53,7 +51,7 @@ export default class VictoryScatterExample extends Component {
       showLabels,
       size,
     } = this.state;
-    const selectedFill = fills[selectedFillIndex];
+    const selectedFill = solidColors[selectedFillIndex];
 
     return (
       <View style={styles.container}>
@@ -67,7 +65,7 @@ export default class VictoryScatterExample extends Component {
               }}
               size={size}
               data={rawData[selectedDatasetIndex]}
-              labels={showLabels ? labels : undefined}
+              labels={showLabels ? dataLabels : undefined}
               symbol={symbols[selectedSymbolIndex].toLowerCase()}
               style={{
                 data: {
@@ -75,8 +73,7 @@ export default class VictoryScatterExample extends Component {
                 },
                 labels: {
                   fill: selectedFill,
-                  fontSize: Math.max(12, size * 1.5),
-                  fontWeight: "600",
+                  fontSize: Math.max(minFontSize, size * 1.5),
                   padding: size * 2,
                 },
               }}

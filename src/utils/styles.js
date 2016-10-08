@@ -12,3 +12,5 @@ export const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
+
+export const minFontSize = 14;

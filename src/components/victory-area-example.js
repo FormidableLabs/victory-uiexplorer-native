@@ -8,10 +8,10 @@ import Toggle from "./toggle";
 import Checkbox from "./checkbox";
 
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
+import { dataLabels } from "../utils/data";
 import { defaultPropMap, defaultDuration } from "../utils/props";
-import { styles } from "../utils/styles";
+import { styles, minFontSize } from "../utils/styles";
 
-const labels = ["a", "b", "c", "d", "e"];
 const defaultProps = defaultPropMap.VictoryArea;
 const { data, interpolation, style, ...otherDefaultProps } = defaultProps;
 
@@ -61,7 +61,7 @@ export default class VictoryAreaExample extends Component {
             />
             {showDataMarkers &&
               <VictoryScatter
-                labels={labels}
+                labels={dataLabels}
                 size={4}
                 style={{
                   data: {
@@ -69,8 +69,7 @@ export default class VictoryAreaExample extends Component {
                   },
                   labels: {
                     fill: selectedFill,
-                    fontSize: 12,
-                    fontWeight: "600",
+                    fontSize: minFontSize,
                     padding: 12,
                   },
                 }}

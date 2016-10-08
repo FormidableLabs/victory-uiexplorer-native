@@ -8,8 +8,9 @@ import Toggle from "./toggle";
 import Checkbox from "./checkbox";
 
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
+import { dataLabels } from "../utils/data";
 import { defaultPropMap } from "../utils/props";
-import { styles } from "../utils/styles";
+import { styles, minFontSize } from "../utils/styles";
 
 const defaultProps = defaultPropMap.VictoryCandlestick;
 const { data, style: defaultStyles, ...otherDefaultProps } = defaultProps;
@@ -50,7 +51,7 @@ export default class VictoryCandlestickExample extends Component {
               onLoad: { duration: 0.0000001 },
             }}
             data={data[selectedDatasetIndex]}
-            labels={showLabels ? ["a", "b", "c", "d", "e"] : undefined}
+            labels={showLabels ? dataLabels : undefined}
             style={selectedColorScaleIndex === 0 ? defaultStyles : {
               data: {
                 fill: selectedColorScale[2],
@@ -58,7 +59,7 @@ export default class VictoryCandlestickExample extends Component {
               },
               labels: {
                 fill: selectedColorScale[1],
-                fontSize: 14,
+                fontSize: minFontSize,
                 padding: 6,
               },
             }}

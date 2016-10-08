@@ -8,12 +8,10 @@ import Toggle from "./toggle";
 import Slider from "./slider";
 import Checkbox from "./checkbox";
 
+import { solidColors, solidColorToggleValues } from "../utils/colors";
+import { dataLabels } from "../utils/data";
 import { defaultPropMap, defaultDuration } from "../utils/props";
-import { styles } from "../utils/styles";
-import { brights, blueGrays, solidColorToggleValues } from "../utils/colors";
-
-const strokeColors = [blueGrays[3], brights[1], brights[2], brights[3]];
-const dataLabels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+import { styles, minFontSize } from "../utils/styles";
 
 const defaultProps = defaultPropMap.VictoryLine;
 const { data, ...otherDefaultProps } = defaultProps;
@@ -48,7 +46,7 @@ export default class VictoryLineExample extends Component {
       strokeWidth,
     } = this.state;
 
-    const selectedStrokeColor = strokeColors[selectedStrokeColorIndex];
+    const selectedStrokeColor = solidColors[selectedStrokeColorIndex];
     const selectedDataset = data[selectedDatasetIndex];
     const size = Math.max(3, strokeWidth * 1.3);
 
@@ -62,13 +60,12 @@ export default class VictoryLineExample extends Component {
               label={showLineLabel ? "LINE" : undefined}
               style={{
                 data: {
-                  stroke: strokeColors[selectedStrokeColorIndex],
+                  stroke: solidColors[selectedStrokeColorIndex],
                   strokeWidth,
                 },
                 labels: {
                   fill: selectedStrokeColor,
-                  fontSize: Math.max(10, strokeWidth * 3),
-                  fontWeight: "600",
+                  fontSize: Math.max(minFontSize, strokeWidth * 3),
                 },
               }}
             />
@@ -85,9 +82,8 @@ export default class VictoryLineExample extends Component {
                   },
                   labels: {
                     fill: selectedStrokeColor,
-                    fontSize: Math.max(12, size * 2),
-                    fontWeight: "600",
-                    padding: Math.max(8, size * 2),
+                    fontSize: Math.max(minFontSize, size * 2),
+                    padding: Math.max(10, size * 2),
                   },
                 }}
               />

@@ -1,4 +1,4 @@
-import { datasets } from "./datasets";
+import { datasets } from "./data";
 import { colorScale } from "./colors";
 
 const height = 300;

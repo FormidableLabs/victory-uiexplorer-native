@@ -14,7 +14,6 @@ import { styles } from "../utils/styles";
 
 const orientationToggleValues = ["Vertical", "Horizontal"];
 const horizontalChartPadding = { top: 50, right: 80, bottom: 50, left: 80 };
-
 const defaultProps = defaultPropMap.VictoryBar;
 const { data, ...otherDefaultProps } = defaultProps;
 delete otherDefaultProps.style;

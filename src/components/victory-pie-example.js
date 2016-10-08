@@ -15,7 +15,6 @@ import { styles } from "../utils/styles";
 const endAngles = ["-180", "-135", "-90"];
 const startAngles = ["180", "135", "90"];
 const animationWhitelist = ["colorScale", "data", "endAngle", "startAngle"];
-
 const defaultProps = defaultPropMap.VictoryPie;
 const { data, ...otherDefaultProps } = defaultProps;
 

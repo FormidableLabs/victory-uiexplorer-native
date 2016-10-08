@@ -1,5 +1,7 @@
 import { colorScale } from "./colors";
 
+export const dataLabels = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
 export const datasets = {
   pie: {
     0: [
@@ -74,8 +76,6 @@ export const datasets = {
       { x: 5, y: 5 },
       { x: 6, y: 4 },
       { x: 7, y: 6 },
-      { x: 8, y: 5 },
-      { x: 9, y: 7 },
     ],
     1: [
       { x: 0, y: 0 },
@@ -86,8 +86,6 @@ export const datasets = {
       { x: 5, y: 7.5 },
       { x: 6, y: 10.5 },
       { x: 7, y: 14 },
-      { x: 8, y: 18 },
-      { x: 9, y: 22.5 },
     ],
     2: [
       { x: 0, y: Math.sin(0) },
@@ -98,8 +96,6 @@ export const datasets = {
       { x: 5, y: Math.sin(5) },
       { x: 6, y: Math.sin(6) },
       { x: 7, y: Math.sin(7) },
-      { x: 8, y: Math.sin(8) },
-      { x: 9, y: Math.sin(9) },
     ],
   },
   scatter: {

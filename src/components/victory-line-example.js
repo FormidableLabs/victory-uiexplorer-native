@@ -10,12 +10,11 @@ import Checkbox from "./checkbox";
 
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles } from "../utils/styles";
-import { colorScale, colorScales } from "../utils/colors";
+import { brights, blueGrays, solidColorToggleValues } from "../utils/colors";
 
-const brights = colorScales[1];
-const strokeColors = [colorScale[3], brights[1], brights[2], brights[3]];
+const strokeColors = [blueGrays[3], brights[1], brights[2], brights[3]];
 const dataLabels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
-const toggleValues = ["Blue Gray", "Purple", "Pink", "Persimmon"];
+
 const defaultProps = defaultPropMap.VictoryLine;
 const { data, ...otherDefaultProps } = defaultProps;
 
@@ -25,8 +24,7 @@ export default class VictoryLineExample extends Component {
   constructor(props) {
     super(props);
 
-    this.handleDataLabelsChange = this.handleDataLabelsChange.bind(this);
-    this.handleDataPointChange = this.handleDataPointChange.bind(this);
+    this.handleDataMarkerChange = this.handleDataMarkerChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleLineLabelChange = this.handleLineLabelChange.bind(this);
     this.handleStrokeColorChange = this.handleStrokeColorChange.bind(this);
@@ -35,8 +33,7 @@ export default class VictoryLineExample extends Component {
     this.state = {
       selectedDatasetIndex: 0,
       selectedStrokeColorIndex: 0,
-      showDataLabels: false,
-      showDataPoints: false,
+      showDataMarkers: false,
       showLineLabel: false,
       strokeWidth: 2,
     };
@@ -44,15 +41,14 @@ export default class VictoryLineExample extends Component {
 
   render() {
     const {
-      selectedStrokeColorIndex,
       selectedDatasetIndex,
-      showDataLabels,
-      showDataPoints,
+      selectedStrokeColorIndex,
+      showDataMarkers,
       showLineLabel,
       strokeWidth,
     } = this.state;
 
-    const strokeColor = strokeColors[selectedStrokeColorIndex];
+    const selectedStrokeColor = strokeColors[selectedStrokeColorIndex];
     const selectedDataset = data[selectedDatasetIndex];
     const size = Math.max(3, strokeWidth * 1.3);
 
@@ -70,25 +66,25 @@ export default class VictoryLineExample extends Component {
                   strokeWidth,
                 },
                 labels: {
-                  fill: strokeColor,
+                  fill: selectedStrokeColor,
                   fontSize: Math.max(10, strokeWidth * 3),
                   fontWeight: "600",
                 },
               }}
             />
-            {showDataPoints &&
+            {showDataMarkers &&
               <VictoryScatter
                 data={selectedDataset}
-                labels={showDataLabels ? dataLabels : undefined}
+                labels={dataLabels}
                 size={size}
                 style={{
                   data: {
-                    fill: strokeColor,
+                    fill: selectedStrokeColor,
                     stroke: "white",
                     strokeWidth: 2,
                   },
                   labels: {
-                    fill: strokeColor,
+                    fill: selectedStrokeColor,
                     fontSize: Math.max(12, size * 2),
                     fontWeight: "600",
                     padding: Math.max(8, size * 2),
@@ -108,7 +104,7 @@ export default class VictoryLineExample extends Component {
             onChange={this.handleStrokeColorChange}
             selectedIndex={selectedStrokeColorIndex}
             title="strokeColor"
-            values={toggleValues}
+            values={solidColorToggleValues}
           />
           <Slider
             min={1}
@@ -118,16 +114,12 @@ export default class VictoryLineExample extends Component {
             value={strokeWidth}
           />
           <Checkbox
-            label="Show data points"
-            onChange={this.handleDataPointChange}
+            label="Show data markers and labels"
+            onChange={this.handleDataMarkerChange}
           />
           <Checkbox
             label="Show line label"
             onChange={this.handleLineLabelChange}
-          />
-          <Checkbox
-            label="Show data labels"
-            onChange={this.handleDataLabelsChange}
           />
         </ChartControls>
       </View>
@@ -150,11 +142,7 @@ export default class VictoryLineExample extends Component {
     this.setState({ showLineLabel: !this.state.showLineLabel });
   }
 
-  handleDataPointChange() {
-    this.setState({ showDataPoints: !this.state.showDataPoints });
-  }
-
-  handleDataLabelsChange() {
-    this.setState({ showDataLabels: !this.state.showDataLabels });
+  handleDataMarkerChange() {
+    this.setState({ showDataMarkers: !this.state.showDataMarkers });
   }
 }

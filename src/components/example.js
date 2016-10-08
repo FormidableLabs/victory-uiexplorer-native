@@ -5,23 +5,23 @@ import { defaultPropMap } from "../utils/props";
 
 const Example = ({ module: TargetComponent, selectedDatasetIndex = 0 }) => {
   const componentName = TargetComponent.displayName;
-  const chartProps = defaultPropMap[componentName];
-  const { data, ...otherProps } = chartProps;
-  const customWrapper = customWrappers[componentName];
-  const ComponentWrapper = customWrapper || ChartWrapper;
+  const defaultProps = defaultPropMap[componentName];
+  const { data, ...otherDefaultProps } = defaultProps;
+  const customChartWrapper = customChartWrappers[componentName];
+  const ComponentWrapper = customChartWrapper || ChartWrapper;
 
   return (
     <ComponentWrapper>
       <TargetComponent
+        {...otherDefaultProps}
         data={data[selectedDatasetIndex]}
-        standalone={!customWrapper}
-        {...otherProps}
+        standalone={!customChartWrapper}
       />
     </ComponentWrapper>
   );
 };
 
-const customWrappers = {
+const customChartWrappers = {
   VictoryArea: VictoryAreaChartWrapper,
 };
 

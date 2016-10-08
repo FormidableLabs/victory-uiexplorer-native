@@ -9,11 +9,12 @@ import Toggle from "./toggle";
 import Slider from "./slider";
 
 import { defaultPropMap } from "../utils/props";
-import { colorScales } from "../utils/colors";
+import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { styles } from "../utils/styles";
 
-const orientations = ["vertical", "horizontal"];
+const orientationToggleValues = ["Vertical", "Horizontal"];
 const horizontalChartPadding = { top: 50, right: 80, bottom: 50, left: 80 };
+
 const defaultProps = defaultPropMap.VictoryBar;
 const { data, ...otherDefaultProps } = defaultProps;
 delete otherDefaultProps.style;
@@ -24,14 +25,14 @@ export default class VictoryBarExample extends Component {
   constructor(props) {
     super(props);
 
-    this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleColorScaleChange = this.handleColorScaleChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleOrientationChange = this.handleOrientationChange.bind(this);
     this.handleBarWidthChange = this.handleBarWidthChange.bind(this);
 
     this.state = {
       barWidth: 40,
-      selectedColorIndex: 0,
+      selectedColorScaleIndex: 0,
       selectedDatasetIndex: 0,
       selectedOrientationIndex: 0,
     };
@@ -40,13 +41,13 @@ export default class VictoryBarExample extends Component {
   render() {
     const {
       barWidth,
-      selectedColorIndex,
+      selectedColorScaleIndex,
       selectedDatasetIndex,
       selectedOrientationIndex,
     } = this.state;
 
-    const isHorizontal = orientations[selectedOrientationIndex] === "horizontal";
-    const selectedColorScale = colorScales[selectedColorIndex];
+    const isHorizontal = orientationToggleValues[selectedOrientationIndex] === "horizontal";
+    const selectedColorScale = colorScales[selectedColorScaleIndex];
     const dataWithSelectedColors = data[selectedDatasetIndex].map((d, i) => {
       d.fill = selectedColorScale[i];
       return d;
@@ -76,10 +77,10 @@ export default class VictoryBarExample extends Component {
             title="data"
           />
           <Toggle
-            onChange={this.handleColorChange}
-            selectedIndex={selectedColorIndex}
+            onChange={this.handleColorScaleChange}
+            selectedIndex={selectedColorScaleIndex}
             title="colorScale"
-            values={["Blue Gray", "Bright", "Yellow"]}
+            values={colorScaleToggleValues}
           />
           <Slider
             min={5}
@@ -92,15 +93,15 @@ export default class VictoryBarExample extends Component {
             onChange={this.handleOrientationChange}
             selectedIndex={selectedOrientationIndex}
             title="orientation"
-            values={orientations}
+            values={orientationToggleValues}
           />
         </ChartControls>
       </View>
     );
   }
 
-  handleColorChange(ev) {
-    this.setState({ selectedColorIndex: ev.nativeEvent.selectedSegmentIndex });
+  handleColorScaleChange(ev) {
+    this.setState({ selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 
   handleDatasetChange(ev) {

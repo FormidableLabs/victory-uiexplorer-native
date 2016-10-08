@@ -84,6 +84,11 @@ export const defaultPropMap = {
         fill: colorScale[3],
         stroke: colorScale[2],
       },
+      labels: {
+        fill: colorScale[2],
+        fontSize: 14,
+        padding: 6,
+      },
     },
   },
 };

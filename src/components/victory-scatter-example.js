@@ -12,13 +12,11 @@ import Checkbox from "./checkbox";
 
 import { defaultPropMap } from "../utils/props";
 import { styles } from "../utils/styles";
-import { colorScale, colorScales } from "../utils/colors";
+import { brights, blueGrays, solidColorToggleValues } from "../utils/colors";
 
-const brights = colorScales[1];
-const fills = [colorScale[2], brights[1], brights[2], brights[3]];
+const fills = [blueGrays[2], brights[1], brights[2], brights[3]];
 const symbols = ["circle", "star", "plus", "diamond"];
 const labels = ["a", "b", "c", "d", "e", "f", "g"];
-const toggleValues = ["Blue Gray", "Purple", "Pink", "Persimmon"];
 
 const defaultProps = defaultPropMap.VictoryScatter;
 const { data, ...otherDefaultProps } = defaultProps;
@@ -101,7 +99,7 @@ export default class VictoryScatterExample extends Component {
             onChange={this.handleFillChange}
             selectedIndex={selectedFillIndex}
             title="fill"
-            values={toggleValues}
+            values={solidColorToggleValues}
           />
           <Slider
             min={5}

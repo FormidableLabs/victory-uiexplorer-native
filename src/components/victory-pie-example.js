@@ -9,15 +9,15 @@ import Toggle from "./toggle";
 import Slider from "./slider";
 
 import { defaultPropMap, defaultDuration } from "../utils/props";
-import { colorScales } from "../utils/colors";
+import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { styles } from "../utils/styles";
 
 const endAngles = ["-180", "-135", "-90"];
 const startAngles = ["180", "135", "90"];
+const animationWhitelist = ["colorScale", "data", "endAngle", "startAngle"];
+
 const defaultProps = defaultPropMap.VictoryPie;
 const { data, ...otherDefaultProps } = defaultProps;
-const animationWhitelist = ["colorScale", "data", "endAngle", "startAngle"];
-const colorScaleToggleValues = ["Blue Gray", "Bright", "Yellow"];
 
 export default class VictoryPieExample extends Component {
   static displayName = "VictoryPieExample";
@@ -25,7 +25,7 @@ export default class VictoryPieExample extends Component {
   constructor(props) {
     super(props);
 
-    this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleColorScaleChange = this.handleColorScaleChange.bind(this);
     this.handleDatasetChange = this.handleDatasetChange.bind(this);
     this.handleInnerRadiusChange = this.handleInnerRadiusChange.bind(this);
     this.handleEndAngleChange = this.handleEndAngleChange.bind(this);
@@ -35,7 +35,7 @@ export default class VictoryPieExample extends Component {
     this.state = {
       innerRadius: 0,
       padAngle: 0,
-      selectedColorIndex: 0,
+      selectedColorScaleIndex: 0,
       selectedDatasetIndex: 0,
       selectedEndAngleIndex: 0,
       selectedStartAngleIndex: 0,
@@ -46,7 +46,7 @@ export default class VictoryPieExample extends Component {
     const {
       innerRadius,
       padAngle,
-      selectedColorIndex,
+      selectedColorScaleIndex,
       selectedDatasetIndex,
       selectedEndAngleIndex,
       selectedStartAngleIndex,
@@ -59,7 +59,7 @@ export default class VictoryPieExample extends Component {
             <VictoryPie
               {...otherDefaultProps}
               animate={defaultDuration}
-              colorScale={colorScales[selectedColorIndex]}
+              colorScale={colorScales[selectedColorScaleIndex]}
               data={data[selectedDatasetIndex]}
               innerRadius={innerRadius}
               startAngle={parseInt(startAngles[selectedStartAngleIndex])}
@@ -75,8 +75,8 @@ export default class VictoryPieExample extends Component {
             title="data"
           />
           <Toggle
-            onChange={this.handleColorChange}
-            selectedIndex={selectedColorIndex}
+            onChange={this.handleColorScaleChange}
+            selectedIndex={selectedColorScaleIndex}
             title="colorScale"
             values={colorScaleToggleValues}
           />
@@ -109,8 +109,8 @@ export default class VictoryPieExample extends Component {
     );
   }
 
-  handleColorChange(ev) {
-    this.setState({ selectedColorIndex: ev.nativeEvent.selectedSegmentIndex });
+  handleColorScaleChange(ev) {
+    this.setState({ selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex });
   }
 
   handleDatasetChange(ev) {

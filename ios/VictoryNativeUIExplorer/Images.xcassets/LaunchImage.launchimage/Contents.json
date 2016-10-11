@@ -1,18 +1,21 @@
 {
   "images" : [
     {
-      "orientation" : "portrait",
+      "extent" : "full-screen",
       "idiom" : "iphone",
-      "filename" : "victory-launch-small.png",
-      "minimum-system-version" : "7.0",
-      "scale" : "2x"
+      "subtype" : "736h",
+      "filename" : "Default-iPhone6Plus.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "portrait",
+      "scale" : "3x"
     },
     {
-      "orientation" : "portrait",
+      "extent" : "full-screen",
       "idiom" : "iphone",
-      "filename" : "victory-launch.png",
-      "minimum-system-version" : "7.0",
-      "subtype" : "retina4",
+      "subtype" : "667h",
+      "filename" : "Default-iPhone6.png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "portrait",
       "scale" : "2x"
     }
   ],

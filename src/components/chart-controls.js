@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 
 const ChartControls = ({ children }) => (
-  <ScrollView style={styles.container}>
+  <ScrollView contentContainerStyle={styles.container}>
     {children}
   </ScrollView>
 );

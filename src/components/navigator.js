@@ -77,7 +77,7 @@ export default class Navigator extends Component {
 
     return (
       <TouchableOpacity
-        style={styles.buttonContainer}
+        style={styles.backButtonContainer}
         onPress={this.handleBack}
       >
         <View style={styles.backButton} />

@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
-import { SegmentedControlIOS, View } from "react-native";
+import { View } from "react-native";
+import SegmentedControl from "./segmented-control";
 import Title from "./title";
-import { colorScale } from "../utils/colors";
+import { colorScale, colors } from "../utils/colors";
 
 const Toggle = ({
   onChange = () => {},
@@ -11,10 +12,11 @@ const Toggle = ({
 }) => (
   <View style={{ marginBottom: 20 }}>
     <Title text={title} style={{ marginBottom: 10 }} />
-    <SegmentedControlIOS
+    <SegmentedControl
       onChange={onChange}
       selectedIndex={selectedIndex}
       style={{ height: 40 }}
+      backgroundColor={colors.backgroundColor}
       tintColor={colorScale[1]}
       values={values}
     />

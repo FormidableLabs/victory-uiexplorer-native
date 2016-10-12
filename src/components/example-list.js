@@ -61,16 +61,17 @@ export default class ExampleList extends Component {
   _renderRow(rowData, sectionID, rowID, highlightRow) {
     return (
       <TouchableOpacity
+        style={exampleListStyles.rowContainer}
         onPress={() => {
           this._pressRow(rowID);
           highlightRow(sectionID, rowID);
         }}
       >
+        <View style={exampleListStyles.titleContainer}>
+          <Title text={exampleTitles[rowID]} />
+          <View style={exampleListStyles.titleCaret} />
+        </View>
         <View style={exampleListStyles.componentContainer}>
-          <View style={exampleListStyles.titleContainer}>
-            <Title text={exampleTitles[rowID]} />
-            <View style={exampleListStyles.titleCaret} />
-          </View>
           {rowData}
         </View>
       </TouchableOpacity>
@@ -79,13 +80,15 @@ export default class ExampleList extends Component {
 }
 
 const exampleListStyles = StyleSheet.create({
+  rowContainer: {
+    marginTop: 32,
+  },
   componentContainer: {
     alignItems: "center",
     backgroundColor: "white",
     borderTopColor: colors.borderColor,
     borderTopWidth: StyleSheet.hairlineWidth,
     height: 300,
-    marginTop: 48,
     position: "relative",
   },
   titleCaret: {
@@ -102,7 +105,6 @@ const exampleListStyles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     paddingLeft: 11,
-    position: "absolute",
-    top: -24,
+    paddingBottom: 11,
   },
 });

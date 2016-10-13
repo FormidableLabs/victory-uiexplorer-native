@@ -6,6 +6,7 @@ import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import ChartControls from "./chart-controls";
 import Toggle from "./toggle";
 import Checkbox from "./checkbox";
+import CallToAction from "./call-to-action";
 
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
@@ -92,6 +93,11 @@ export default class VictoryAreaExample extends Component {
           <Checkbox
             label="Show data markers and labels"
             onChange={this.handleDataMarkerChange}
+          />
+          <CallToAction
+            text="Learn more"
+            url="https://formidable.com/open-source/victory/docs/victory-area"
+            rounded
           />
         </ChartControls>
       </View>

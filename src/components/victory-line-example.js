@@ -7,6 +7,7 @@ import ChartWrapper from "./chart-wrapper";
 import Toggle from "./toggle";
 import Slider from "./slider";
 import Checkbox from "./checkbox";
+import CallToAction from "./call-to-action";
 
 import { solidColors, solidColorToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
@@ -116,6 +117,11 @@ export default class VictoryLineExample extends Component {
           <Checkbox
             label="Show line label"
             onChange={this.handleLineLabelChange}
+          />
+          <CallToAction
+            text="Learn more"
+            url="https://formidable.com/open-source/victory/docs/victory-line"
+            rounded
           />
         </ChartControls>
       </View>

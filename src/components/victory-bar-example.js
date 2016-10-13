@@ -7,6 +7,7 @@ import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
 import Toggle from "./toggle";
 import Slider from "./slider";
+import CallToAction from "./call-to-action";
 
 import { defaultPropMap } from "../utils/props";
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
@@ -94,6 +95,12 @@ export default class VictoryBarExample extends Component {
             selectedIndex={selectedOrientationIndex}
             title="orientation"
             values={orientationToggleValues}
+          />
+          <CallToAction
+            text="Learn more"
+            url="https://formidable.com/open-source/victory/docs/victory-bar"
+            style={{ marginTop: 16 }}
+            rounded
           />
         </ChartControls>
       </View>

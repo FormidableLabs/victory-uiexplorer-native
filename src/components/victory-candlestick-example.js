@@ -6,6 +6,7 @@ import ChartControls from "./chart-controls";
 import ChartWrapper from "./chart-wrapper";
 import Toggle from "./toggle";
 import Checkbox from "./checkbox";
+import CallToAction from "./call-to-action";
 
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
@@ -80,6 +81,11 @@ export default class VictoryCandlestickExample extends Component {
           <Checkbox
             label="Show labels"
             onChange={this.handleLabelsChange}
+          />
+          <CallToAction
+            text="Learn more"
+            url="https://formidable.com/open-source/victory/docs/victory-candlestick"
+            rounded
           />
         </ChartControls>
       </View>

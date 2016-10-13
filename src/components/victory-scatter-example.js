@@ -15,6 +15,7 @@ import { solidColors, solidColorToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
 import { defaultPropMap } from "../utils/props";
 import { styles, minFontSize } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const symbols = ["Circle", "Star", "Plus", "Diamond"];
 const defaultProps = defaultPropMap.VictoryScatter;
@@ -42,6 +43,10 @@ export default class VictoryScatterExample extends Component {
       showLabels: false,
       size: 7,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Scatter");
   }
 
   render() {

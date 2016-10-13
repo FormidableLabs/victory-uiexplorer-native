@@ -12,6 +12,7 @@ import CallToAction from "./call-to-action";
 import { defaultPropMap } from "../utils/props";
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { styles } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const orientationToggleValues = ["Vertical", "Horizontal"];
 const horizontalChartPadding = { top: 50, right: 80, bottom: 50, left: 80 };
@@ -36,6 +37,10 @@ export default class VictoryBarExample extends Component {
       selectedDatasetIndex: 0,
       selectedOrientationIndex: 0,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Bar");
   }
 
   render() {

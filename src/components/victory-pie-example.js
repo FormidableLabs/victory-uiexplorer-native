@@ -12,6 +12,7 @@ import CallToAction from "./call-to-action";
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { styles } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const endAngles = ["-180", "-135", "-90"];
 const startAngles = ["180", "135", "90"];
@@ -40,6 +41,10 @@ export default class VictoryPieExample extends Component {
       selectedEndAngleIndex: 0,
       selectedStartAngleIndex: 0,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Pie");
   }
 
   render() {

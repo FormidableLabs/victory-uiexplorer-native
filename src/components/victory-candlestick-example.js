@@ -12,6 +12,7 @@ import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
 import { defaultPropMap } from "../utils/props";
 import { styles, minFontSize } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const defaultProps = defaultPropMap.VictoryCandlestick;
 const { data, style: defaultStyles, ...otherDefaultProps } = defaultProps;
@@ -31,6 +32,10 @@ export default class VictoryCandlestickExample extends Component {
       selectedDatasetIndex: 0,
       showLabels: false,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Candlestick");
   }
 
   render() {

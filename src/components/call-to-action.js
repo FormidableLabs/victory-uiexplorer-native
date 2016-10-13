@@ -10,18 +10,24 @@ import {
 } from "react-native";
 import { colorScale } from "../utils/colors";
 import { styles } from "../utils/styles";
+import { sendEvent } from "../utils/analytics";
+
+const createUrlHandler = (url) => () => {
+  sendEvent("CallToAction", url);
+  Linking.openURL(url);
+};
 
 const CallToAction = ({ text, url, style, rounded }) => (
   <View style={style}>
     <TouchableOpacity
-      onPress={() => Linking.openURL(url)}
+      onPress={createUrlHandler(url)}
       style={[componentStyles.touchable, rounded && componentStyles.rounded]}
     >
       <Text style={componentStyles.text}>{text.toUpperCase()}</Text>
       <View style={[styles.caret, { borderColor: "white" }]} />
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={() => Linking.openURL("https://formidable.com/")}
+      onPress={createUrlHandler("https://formidable.com/")}
       style={[componentStyles.brandTouchable]}
     >
       <Image

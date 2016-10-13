@@ -13,6 +13,7 @@ import { solidColors, solidColorToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles, minFontSize } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const defaultProps = defaultPropMap.VictoryLine;
 const { data, ...otherDefaultProps } = defaultProps;
@@ -36,6 +37,10 @@ export default class VictoryLineExample extends Component {
       showLineLabel: false,
       strokeWidth: 2,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Line");
   }
 
   render() {

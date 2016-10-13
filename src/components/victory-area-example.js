@@ -12,6 +12,7 @@ import { colorScales, colorScaleToggleValues } from "../utils/colors";
 import { dataLabels } from "../utils/data";
 import { defaultPropMap, defaultDuration } from "../utils/props";
 import { styles, minFontSize } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const defaultProps = defaultPropMap.VictoryArea;
 const { data, interpolation, style, ...otherDefaultProps } = defaultProps;
@@ -31,6 +32,10 @@ export default class VictoryAreaExample extends Component {
       selectedDatasetIndex: 0,
       showDataMarkers: false,
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Area");
   }
 
   render() {

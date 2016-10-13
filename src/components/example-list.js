@@ -6,6 +6,7 @@ import CallToAction from "./call-to-action";
 import { colors } from "../utils/colors";
 import { components, examples } from "../utils/examples";
 import { styles } from "../utils/styles";
+import { sendScreenView } from "../utils/analytics";
 
 const exampleTitles = [
   "PIE CHART",
@@ -38,6 +39,10 @@ export default class ExampleList extends Component {
         return React.createElement(Example, { module: component });
       })),
     };
+  }
+
+  componentDidMount() {
+    sendScreenView("Home");
   }
 
   _pressRow(rowID) {

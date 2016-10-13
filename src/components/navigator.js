@@ -1,5 +1,12 @@
 import React, { Component, PropTypes } from "react";
-import { NavigationExperimental, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  NavigationExperimental,
+  BackAndroid,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors } from "../utils/colors";
 
 const {
@@ -17,6 +24,7 @@ export default class Navigator extends Component {
     super(props);
     this._navigate = this._navigate.bind(this);
     this.handleBack = this._navigate.bind(null, "pop");
+    this.handleAndroidBackButtonPress = this.handleAndroidBackButtonPress.bind(this);
     this._renderHeader = this._renderHeader.bind(this);
     this._renderScene = this._renderScene.bind(this);
     this._renderBackButtonComponent = this._renderBackButtonComponent.bind(this);
@@ -32,6 +40,10 @@ export default class Navigator extends Component {
         routes: [props.initialRoute],
       },
     };
+
+    if (Platform.OS === "android") {
+      BackAndroid.addEventListener("hardwareBackPress", this.handleAndroidBackButtonPress);
+    }
   }
 
   render() {
@@ -44,6 +56,15 @@ export default class Navigator extends Component {
         onNavigateBack={this.handleBack}
       />
     );
+  }
+
+  handleAndroidBackButtonPress() {
+    if (this.state.navigationState.index > 0) {
+      this.handleBack();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   _navigate(type, route) {

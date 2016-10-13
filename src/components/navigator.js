@@ -48,7 +48,9 @@ export default class Navigator extends Component {
 
   _navigate(type, route) {
     let { navigationState } = this.state;
-    if (navigationState.routes[navigationState.index].key === route.key) { return; }
+    if (route && navigationState.routes[navigationState.index].key === route.key) {
+      return;
+    }
     switch (type) {
     case "push":
       navigationState = NavigationStateUtils.push(navigationState, route);

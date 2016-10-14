@@ -1,8 +1,18 @@
 import React, { PropTypes } from "react";
-import { View } from "react-native";
+import { Platform, View, SegmentedControlIOS } from "react-native";
 import SegmentedControl from "./segmented-control";
 import Title from "./title";
 import { colorScale, colors } from "../utils/colors";
+
+// ideally we would use the cross-platform SegmentedControl
+// for iOS and Android, but because of an obscure border rendering
+// glitch on iOS, as a workaround let's use the compatible native
+// implementation. See:
+// https://github.com/FormidableLabs/victory-uiexplorer-native/issues/10
+// https://github.com/facebook/react-native/issues/6082
+const ToggleControl = Platform.OS === "ios"
+  ? SegmentedControlIOS
+  : SegmentedControl;
 
 const Toggle = ({
   onChange = () => {},
@@ -12,7 +22,7 @@ const Toggle = ({
 }) => (
   <View style={{ marginBottom: 20 }}>
     <Title text={title} style={{ marginBottom: 10 }} />
-    <SegmentedControl
+    <ToggleControl
       onChange={onChange}
       selectedIndex={selectedIndex}
       style={{ height: 40 }}

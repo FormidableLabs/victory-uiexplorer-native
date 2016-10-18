@@ -99,10 +99,12 @@ android {
     }
     signingConfigs {
         release {
+          /*
             storeFile file(VICTORY_UIEXPLORER_RELEASE_STORE_FILE)
             storePassword VICTORY_UIEXPLORER_RELEASE_STORE_PASSWORD
             keyAlias VICTORY_UIEXPLORER_RELEASE_KEY_ALIAS
             keyPassword VICTORY_UIEXPLORER_RELEASE_KEY_PASSWORD
+          */
         }
     }
     splits {

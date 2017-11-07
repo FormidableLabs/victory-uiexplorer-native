@@ -16,8 +16,8 @@
     "react-native": "0.50.1",
     "react-native-code-push": "^5.1.3-beta",
     "react-native-google-analytics-bridge": "^5.3.3",
-    "react-native-navigation-experimental-compat": "^1.1.0",
     "react-native-svg": "5.5.0",
+    "react-navigation": "^1.0.0-beta.19",
     "victory-core": "^20.0.0",
     "victory-native": "^0.15.0"
   },

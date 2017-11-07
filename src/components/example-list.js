@@ -22,7 +22,7 @@ export default class ExampleList extends Component {
   static displayName = "ExampleList";
 
   static propTypes = {
-    navigator: PropTypes.object,
+    navigation: PropTypes.object,
   };
 
   constructor(props) {
@@ -47,12 +47,9 @@ export default class ExampleList extends Component {
   }
 
   _pressRow(rowID) {
-    const { component, title } = examples[rowID];
-    this.props.navigator.push({
-      key: component.displayName,
-      component,
-      title,
-    });
+    const { component } = examples[rowID];
+    const { navigate } = this.props.navigation;
+    navigate(component.displayName);
   }
 
   render() {
@@ -121,6 +118,6 @@ const exampleListStyles = StyleSheet.create({
     marginLeft: 11,
     marginRight: 11,
     marginTop: 24,
-    marginBottom: 11,
+    marginBottom: 15,
   },
 });

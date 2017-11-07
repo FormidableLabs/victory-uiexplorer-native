@@ -50,7 +50,16 @@ const examples = [
   },
 ];
 
+const routes = examples.reduce((memo, { component, title }) => {
+  memo[component.displayName] = {
+    screen: component,
+    navigationOptions: { title },
+  };
+  return memo;
+}, {});
+
 module.exports = {
   components,
   examples,
+  routes,
 };

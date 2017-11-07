@@ -1183,7 +1183,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.formidable.VictoryNativeUIExplorer;
 				PRODUCT_NAME = VictoryNativeUIExplorer;
-				SDKROOT = iphoneos11.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1205,7 +1205,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.formidable.VictoryNativeUIExplorer;
 				PRODUCT_NAME = VictoryNativeUIExplorer;
-				SDKROOT = iphoneos11.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

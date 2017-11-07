@@ -52,3 +52,7 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+/.vscode
+/android/app/bin
+/android/app/.project
+/android/.project

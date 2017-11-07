@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
-  BackAndroid,
+  BackHandler,
   Platform,
   StyleSheet,
   TouchableOpacity,
@@ -43,7 +43,7 @@ export default class Navigator extends Component {
     };
 
     if (Platform.OS === "android") {
-      BackAndroid.addEventListener("hardwareBackPress", this.handleAndroidBackButtonPress);
+      BackHandler.addEventListener("hardwareBackPress", this.handleAndroidBackButtonPress);
     }
   }
 

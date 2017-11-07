@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ChartWrapper from "./chart-wrapper";
 import VictoryAreaChartWrapper from "./victory-area-chart-wrapper";
 import { defaultPropMap } from "../utils/props";

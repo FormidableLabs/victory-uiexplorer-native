@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
-  NavigationExperimental,
   BackAndroid,
   Platform,
   StyleSheet,
   TouchableOpacity,
   View,
 } from "react-native";
+import NavigationExperimental from "react-native-navigation-experimental-compat";
 import { colors } from "../utils/colors";
 
 const {

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Slider as RNSlider, View } from "react-native";
 import Title from "./title";
 

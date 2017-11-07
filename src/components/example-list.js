@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { ListView, StyleSheet, TouchableOpacity, View } from "react-native";
 import Example from "./example";
 import Title from "./title";

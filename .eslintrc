@@ -4,6 +4,7 @@
   "browser": true
 "rules":
   "no-magic-numbers": 0
+  "arrow-parens": 0
   "comma-dangle": [2, "always-multiline"]
   "no-use-before-define": 0
   "react/sort-comp": 0

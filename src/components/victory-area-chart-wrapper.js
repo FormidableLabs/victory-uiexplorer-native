@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Svg, { Defs, LinearGradient, Stop } from "react-native-svg";
 import ChartWrapper from "./chart-wrapper";
 import { colorScale as defaultColorScale } from "../utils/colors";

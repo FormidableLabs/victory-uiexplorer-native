@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { ListView, StyleSheet, TouchableOpacity, View } from "react-native";
 import Example from "./example";
 import Title from "./title";
@@ -21,7 +22,7 @@ export default class ExampleList extends Component {
   static displayName = "ExampleList";
 
   static propTypes = {
-    navigator: PropTypes.object,
+    navigation: PropTypes.object,
   };
 
   constructor(props) {
@@ -35,9 +36,11 @@ export default class ExampleList extends Component {
     });
 
     this.state = {
-      dataSource: ds.cloneWithRows(components.map((component) => {
-        return React.createElement(Example, { module: component });
-      })),
+      dataSource: ds.cloneWithRows(
+        components.map(component => {
+          return React.createElement(Example, { module: component });
+        })
+      ),
     };
   }
 
@@ -46,12 +49,9 @@ export default class ExampleList extends Component {
   }
 
   _pressRow(rowID) {
-    const { component, title } = examples[rowID];
-    this.props.navigator.push({
-      key: component.displayName,
-      component,
-      title,
-    });
+    const { component } = examples[rowID];
+    const { navigate } = this.props.navigation;
+    navigate(component.displayName);
   }
 
   render() {
@@ -70,6 +70,7 @@ export default class ExampleList extends Component {
     return (
       <TouchableOpacity
         style={exampleListStyles.rowContainer}
+        activeOpacity={0.8}
         onPress={() => {
           this._pressRow(rowID);
           highlightRow(sectionID, rowID);
@@ -79,7 +80,7 @@ export default class ExampleList extends Component {
           <Title text={exampleTitles[rowID]} />
           <View style={styles.caret} />
         </View>
-        <View style={exampleListStyles.componentContainer}>
+        <View style={exampleListStyles.componentContainer} pointerEvents="none">
           {rowData}
         </View>
       </TouchableOpacity>
@@ -120,6 +121,6 @@ const exampleListStyles = StyleSheet.create({
     marginLeft: 11,
     marginRight: 11,
     marginTop: 24,
-    marginBottom: 11,
+    marginBottom: 15,
   },
 });

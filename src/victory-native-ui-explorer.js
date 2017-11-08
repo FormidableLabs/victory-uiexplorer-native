@@ -1,20 +1,30 @@
 import React, { Component } from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 import ExampleList from "./components/example-list";
-import Navigator from "./components/navigator";
+import { routes } from "./utils/examples";
+import { StackNavigator } from "react-navigation";
+import { colors } from "./utils/colors";
+
+const AppNavigator = StackNavigator({ // eslint-disable-line new-cap
+  RootView: {
+    screen: ExampleList,
+    navigationOptions: { title: "Victory Native UIExplorer" },
+  },
+  ...routes,
+}, {
+  initialRouteName: "RootView",
+  navigationOptions: {
+    headerPressColorAndroid: "#6b8cb1",
+    headerTintColor: colors.textColor,
+  },
+});
 
 class VictoryNativeUIExplorer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar/>
-        <Navigator
-          initialRoute={{
-            key: ExampleList.displayName,
-            component: ExampleList,
-            title: "Victory Native UIExplorer",
-          }}
-        />
+        <StatusBar />
+        <AppNavigator />
       </View>
     );
   }

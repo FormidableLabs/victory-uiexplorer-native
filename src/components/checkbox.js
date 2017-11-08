@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import Svg, { Polyline } from "react-native-svg";
 import { colors, colorScale } from "../utils/colors";

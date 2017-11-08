@@ -36,9 +36,11 @@ export default class ExampleList extends Component {
     });
 
     this.state = {
-      dataSource: ds.cloneWithRows(components.map((component) => {
-        return React.createElement(Example, { module: component });
-      })),
+      dataSource: ds.cloneWithRows(
+        components.map(component => {
+          return React.createElement(Example, { module: component });
+        })
+      ),
     };
   }
 
@@ -77,7 +79,7 @@ export default class ExampleList extends Component {
           <Title text={exampleTitles[rowID]} />
           <View style={styles.caret} />
         </View>
-        <View style={exampleListStyles.componentContainer}>
+        <View style={exampleListStyles.componentContainer} pointerEvents="none">
           {rowData}
         </View>
       </TouchableOpacity>

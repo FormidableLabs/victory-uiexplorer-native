@@ -70,6 +70,7 @@ export default class ExampleList extends Component {
     return (
       <TouchableOpacity
         style={exampleListStyles.rowContainer}
+        activeOpacity={0.8}
         onPress={() => {
           this._pressRow(rowID);
           highlightRow(sectionID, rowID);

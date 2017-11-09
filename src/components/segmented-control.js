@@ -18,7 +18,11 @@ export default class SegmentedControl extends Component {
     backgroundColor: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     selectedIndex: PropTypes.number.isRequired,
-    style: View.propTypes.style,
+    style: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.array,
+    ]),
     tintColor: PropTypes.string.isRequired,
     values: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
@@ -63,10 +67,12 @@ export default class SegmentedControl extends Component {
           optionStyle,
         ]}
       >
-        <Text style={[
-          styles.optionText,
-          textColor,
-        ]}>
+        <Text
+          style={[
+            styles.optionText,
+            textColor,
+          ]}
+        >
           {value}
         </Text>
       </TouchableOpacity>

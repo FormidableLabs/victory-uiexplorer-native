@@ -41,7 +41,11 @@ const CallToAction = ({ text, url, style, rounded }) => (
 
 CallToAction.propTypes = {
   rounded: PropTypes.bool,
-  style: View.propTypes.style,
+  style: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.array,
+  ]),
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };

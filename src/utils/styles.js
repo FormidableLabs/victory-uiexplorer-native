@@ -7,9 +7,11 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   chartWrapper: {
+    alignItems: "center",
     backgroundColor: "white",
     borderBottomColor: colors.borderColor,
     borderBottomWidth: StyleSheet.hairlineWidth,
+    height: 300,
   },
   caret: {
     borderColor: "#AABBBF",

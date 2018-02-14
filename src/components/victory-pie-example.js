@@ -121,15 +121,21 @@ export default class VictoryPieExample extends Component {
   }
 
   handleColorScaleChange(ev) {
-    this.setState({ selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleDatasetChange(ev) {
-    this.setState({ selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleEndAngleChange(ev) {
-    this.setState({ selectedEndAngleIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedEndAngleIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleInnerRadiusChange(innerRadius) {
@@ -141,6 +147,8 @@ export default class VictoryPieExample extends Component {
   }
 
   handleStartAngleChange(ev) {
-    this.setState({ selectedStartAngleIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedStartAngleIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 }

@@ -3,6 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
@@ -14,11 +18,24 @@ buildscript {
 
 allprojects {
     repositories {
+        configurations.all {
+            resolutionStrategy {
+                force "com.google.android.gms:play-services-analytics:11.8.0"
+                force "com.google.android.gms:play-services-auth:11.8.0"
+                force "com.google.android.gms:play-services-gcm:11.8.0"
+                force "com.google.android.gms:play-services-location:11.8.0"
+            }
+        }
+
         mavenLocal()
         jcenter()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
         }
     }
 }

@@ -4,7 +4,7 @@ import { colorScale } from "./colors";
 const height = 300;
 const padding = 30;
 
-export const defaultDuration = { duration: 400 };
+export const defaultDuration = { duration: 400, onLoad: { duration: 600 } };
 
 export const shadowProps = {
   elevation: 3,

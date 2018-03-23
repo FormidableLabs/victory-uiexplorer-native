@@ -51,21 +51,15 @@ export default class VictoryAreaExample extends Component {
 
     return (
       <View style={styles.container}>
-        <VictoryAreaChartWrapper
-          dropShadow
-          colorScale={selectedColorScale}
-        >
+        <VictoryAreaChartWrapper dropShadow colorScale={selectedColorScale}>
           <VictoryGroup
             {...otherDefaultProps}
             animate={defaultDuration}
             data={selectedDataset}
             standalone={false}
           >
-            <VictoryArea
-              interpolation={interpolation}
-              style={style}
-            />
-            {showDataMarkers &&
+            <VictoryArea interpolation={interpolation} style={style} />
+            {showDataMarkers && (
               <VictoryScatter
                 labels={dataLabels}
                 size={4}
@@ -80,7 +74,7 @@ export default class VictoryAreaExample extends Component {
                   },
                 }}
               />
-            }
+            )}
           </VictoryGroup>
         </VictoryAreaChartWrapper>
         <ChartControls>
@@ -110,11 +104,15 @@ export default class VictoryAreaExample extends Component {
   }
 
   handleColorScaleChange(ev) {
-    this.setState({ selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedColorScaleIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleDatasetChange(ev) {
-    this.setState({ selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleDataMarkerChange() {

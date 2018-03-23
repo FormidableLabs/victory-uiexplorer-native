@@ -34,7 +34,6 @@ export default class VictoryLineExample extends Component {
       selectedDatasetIndex: 0,
       selectedStrokeColorIndex: 0,
       showDataMarkers: false,
-      showLineLabel: false,
       strokeWidth: 2,
     };
   }
@@ -48,7 +47,6 @@ export default class VictoryLineExample extends Component {
       selectedDatasetIndex,
       selectedStrokeColorIndex,
       showDataMarkers,
-      showLineLabel,
       strokeWidth,
     } = this.state;
 
@@ -63,7 +61,6 @@ export default class VictoryLineExample extends Component {
             <VictoryLine
               {...otherDefaultProps}
               data={selectedDataset}
-              label={showLineLabel ? "LINE" : undefined}
               style={{
                 data: {
                   stroke: solidColors[selectedStrokeColorIndex],
@@ -75,7 +72,7 @@ export default class VictoryLineExample extends Component {
                 },
               }}
             />
-            {showDataMarkers &&
+            {showDataMarkers && (
               <VictoryScatter
                 data={selectedDataset}
                 labels={dataLabels}
@@ -93,7 +90,7 @@ export default class VictoryLineExample extends Component {
                   },
                 }}
               />
-            }
+            )}
           </VictoryGroup>
         </ChartWrapper>
         <ChartControls>
@@ -119,10 +116,6 @@ export default class VictoryLineExample extends Component {
             label="Show data markers and labels"
             onChange={this.handleDataMarkerChange}
           />
-          <Checkbox
-            label="Show line label"
-            onChange={this.handleLineLabelChange}
-          />
           <CallToAction
             text="Learn more"
             url="https://formidable.com/open-source/victory/docs/victory-line"
@@ -134,11 +127,15 @@ export default class VictoryLineExample extends Component {
   }
 
   handleDatasetChange(ev) {
-    this.setState({ selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedDatasetIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleStrokeColorChange(ev) {
-    this.setState({ selectedStrokeColorIndex: ev.nativeEvent.selectedSegmentIndex });
+    this.setState({
+      selectedStrokeColorIndex: ev.nativeEvent.selectedSegmentIndex,
+    });
   }
 
   handleStrokeWidthChange(strokeWidth) {

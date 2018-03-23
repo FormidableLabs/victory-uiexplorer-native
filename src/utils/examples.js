@@ -1,27 +1,9 @@
-import {
-  VictoryPie,
-  VictoryBar,
-  VictoryArea,
-  VictoryLine,
-  VictoryScatter,
-  VictoryCandlestick,
-} from "victory-native";
-
 import VictoryPieExample from "../components/victory-pie-example";
 import VictoryBarExample from "../components/victory-bar-example";
 import VictoryLineExample from "../components/victory-line-example";
 import VictoryAreaExample from "../components/victory-area-example";
 import VictoryScatterExample from "../components/victory-scatter-example";
 import VictoryCandlestickExample from "../components/victory-candlestick-example";
-
-const components = [
-  VictoryPie,
-  VictoryBar,
-  VictoryLine,
-  VictoryArea,
-  VictoryScatter,
-  VictoryCandlestick,
-];
 
 const examples = [
   {
@@ -58,8 +40,4 @@ const routes = examples.reduce((memo, { component, title }) => {
   return memo;
 }, {});
 
-module.exports = {
-  components,
-  examples,
-  routes,
-};
+export { examples, routes };

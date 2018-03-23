@@ -1,98 +1,69 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { ListView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, FlatList } from "react-native";
+import {
+  VictoryPie,
+  VictoryBar,
+  VictoryArea,
+  VictoryLine,
+  VictoryScatter,
+  VictoryCandlestick,
+} from "victory-native";
 import Example from "./example";
 import Title from "./title";
 import CallToAction from "./call-to-action";
 import { colors } from "../utils/colors";
-import { components, examples } from "../utils/examples";
 import { styles } from "../utils/styles";
 import { sendScreenView } from "../utils/analytics";
 
-const exampleTitles = [
-  "PIE CHART",
-  "BAR CHART",
-  "LINE CHART",
-  "AREA CHART",
-  "SCATTER CHART",
-  "CANDLESTICK CHART",
+const listData = [
+  { key: "Pie Chart", component: VictoryPie },
+  { key: "Bar Chart", component: VictoryBar },
+  { key: "Line Chart", component: VictoryLine },
+  { key: "Area Chart", component: VictoryArea },
+  { key: "Scatter Chart", component: VictoryScatter },
+  { key: "Candlestick Chart", component: VictoryCandlestick },
 ];
 
-export default class ExampleList extends Component {
-  static displayName = "ExampleList";
-
+export default class ExampleList extends React.Component {
   static propTypes = {
     navigation: PropTypes.object,
   };
-
-  constructor(props) {
-    super(props);
-    this._pressRow = this._pressRow.bind(this);
-    this._renderRow = this._renderRow.bind(this);
-    this._renderFooter = this._renderFooter.bind(this);
-
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-
-    this.state = {
-      dataSource: ds.cloneWithRows(
-        components.map(component => {
-          return React.createElement(Example, { module: component });
-        })
-      ),
-    };
-  }
 
   componentDidMount() {
     sendScreenView("Home");
   }
 
-  _pressRow(rowID) {
-    const { component } = examples[rowID];
-    const { navigate } = this.props.navigation;
-    navigate(component.displayName);
-  }
-
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        renderFooter={this._renderFooter}
-      />
-    );
-  }
-
-  // eslint-disable-next-line max-params
-  _renderRow(rowData, sectionID, rowID, highlightRow) {
-    return (
-      <TouchableOpacity
-        style={exampleListStyles.rowContainer}
-        activeOpacity={0.8}
-        onPress={() => {
-          this._pressRow(rowID);
-          highlightRow(sectionID, rowID);
-        }}
-      >
-        <View style={exampleListStyles.titleContainer}>
-          <Title text={exampleTitles[rowID]} />
-          <View style={styles.caret} />
-        </View>
-        <View style={exampleListStyles.componentContainer} pointerEvents="none">
-          {rowData}
-        </View>
-      </TouchableOpacity>
-    );
-  }
-
-  _renderFooter() {
-    return (
-      <CallToAction
-        text="Find out more"
-        url="https://formidable.com/open-source/victory/"
-        style={exampleListStyles.callToAction}
+      <FlatList
+        data={listData}
+        ListFooterComponent={() => (
+          <CallToAction
+            text="Find out more"
+            url="https://formidable.com/open-source/victory/"
+            style={exampleListStyles.callToAction}
+          />
+        )}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={exampleListStyles.rowContainer}
+            activeOpacity={0.8}
+            onPress={() => navigate(`${item.component.displayName}Example`)}
+          >
+            <View style={exampleListStyles.titleContainer}>
+              <Title text={item.key} />
+              <View style={styles.caret} />
+            </View>
+            <View
+              style={exampleListStyles.componentContainer}
+              pointerEvents="none"
+            >
+              {React.createElement(Example, { module: item.component })}
+            </View>
+          </TouchableOpacity>
+        )}
       />
     );
   }
@@ -105,6 +76,7 @@ const exampleListStyles = StyleSheet.create({
   componentContainer: {
     alignItems: "center",
     backgroundColor: "white",
+    justifyContent: "center",
     borderTopColor: colors.borderColor,
     borderTopWidth: StyleSheet.hairlineWidth,
     height: 300,
